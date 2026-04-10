@@ -5,15 +5,26 @@ body {
     color: white;
 }
 
+/* CONTAINER FIX (THIS FIXES YOUR NAV ISSUE) */
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 0 20px;
+}
+
 /* NAVBAR */
 .navbar {
     position: fixed;
     width: 100%;
-    padding: 20px 40px;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+}
+
+.nav-inner {
     display: flex;
     justify-content: space-between;
-    background: rgba(0,0,0,0.4);
-    backdrop-filter: blur(10px);
+    align-items: center;
+    padding: 20px 0;
 }
 
 .navbar a {
@@ -27,12 +38,15 @@ body {
     height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
     background: linear-gradient(135deg, #0a0f1c, #1a3a6e);
 }
 
 .hero h1 {
     font-size: 3rem;
+}
+
+.hero p {
+    max-width: 600px;
 }
 
 .hero button {
@@ -46,21 +60,22 @@ body {
 
 /* SECTIONS */
 .section {
-    padding: 100px 20px;
-    text-align: center;
+    padding: 100px 0;
 }
 
-/* GLASS CARDS */
+/* CARDS */
 .cards {
     display: flex;
-    justify-content: center;
     gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .card {
     background: rgba(255,255,255,0.05);
     padding: 30px;
     border-radius: 12px;
+    width: 300px;
     backdrop-filter: blur(10px);
     transition: 0.3s;
 }
@@ -69,12 +84,29 @@ body {
     transform: translateY(-10px);
 }
 
+/* STEPS */
+.steps div {
+    margin: 20px 0;
+}
+
 /* CONTACT */
 .contact {
     background: #111;
 }
 
-/* FADE ANIMATION */
+/* FOOTER */
+footer {
+    padding: 40px 0;
+    text-align: center;
+    background: #000;
+}
+
+.footer-links a {
+    margin: 0 10px;
+    color: #ff7a00;
+}
+
+/* ANIMATIONS */
 .fade {
     opacity: 0;
     transform: translateY(40px);
