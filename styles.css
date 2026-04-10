@@ -1,0 +1,87 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background: #0b3d5c;
+    color: white;
+}
+
+.navbar a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+}
+
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+    background: linear-gradient(#0b3d5c, #145f8c);
+    color: white;
+}
+
+.hero button {
+    padding: 15px 25px;
+    background: #ff7a00;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.gray {
+    background: #f4f4f4;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    width: 250px;
+    border-radius: 8px;
+}
+
+.steps div {
+    margin: 10px 0;
+}
+
+.benefits {
+    list-style: none;
+    padding: 0;
+}
+
+.contact {
+    background: #0b3d5c;
+    color: white;
+}
+
+footer {
+    padding: 20px;
+    text-align: center;
+    background: #222;
+    color: white;
+}
+
+.footer-links a {
+    margin: 0 10px;
+    color: #ff7a00;
+}
+
+.legal {
+    padding: 40px;
+}
