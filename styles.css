@@ -1,11 +1,11 @@
 body {
     margin: 0;
     font-family: 'Inter', sans-serif;
-    background: #0a0f1c;
-    color: white;
+    background: #000;
+    color: #fff;
 }
 
-/* CONTAINER FIX (THIS FIXES YOUR NAV ISSUE) */
+/* CONTAINER */
 .container {
     max-width: 1100px;
     margin: auto;
@@ -16,14 +16,13 @@ body {
 .navbar {
     position: fixed;
     width: 100%;
-    background: rgba(0,0,0,0.5);
-    backdrop-filter: blur(10px);
+    background: #000;
+    border-bottom: 1px solid #111;
 }
 
 .nav-inner {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     padding: 20px 0;
 }
 
@@ -35,27 +34,42 @@ body {
 
 /* HERO */
 .hero {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    background: linear-gradient(135deg, #0a0f1c, #1a3a6e);
+    padding: 150px 0;
+    background: linear-gradient(135deg, #000, #0a1f44);
+}
+
+.tag {
+    color: #3b82f6;
+    font-size: 14px;
 }
 
 .hero h1 {
-    font-size: 3rem;
+    font-size: 48px;
+    margin: 20px 0;
 }
 
-.hero p {
-    max-width: 600px;
+.hero-desc {
+    font-size: 20px;
+    max-width: 700px;
 }
 
-.hero button {
-    padding: 15px 30px;
-    background: #ff7a00;
+.hero-buttons button {
+    padding: 15px 25px;
+    margin-right: 10px;
+    background: #2563eb;
     border: none;
     color: white;
-    margin-top: 20px;
     cursor: pointer;
+}
+
+.outline {
+    background: transparent;
+    border: 1px solid #2563eb;
+}
+
+.hero-stats {
+    margin-top: 20px;
+    font-size: 14px;
 }
 
 /* SECTIONS */
@@ -63,35 +77,42 @@ body {
     padding: 100px 0;
 }
 
+.dark {
+    background: #050b1a;
+}
+
+/* BIG TEXT */
+.big-text {
+    font-size: 20px;
+    max-width: 800px;
+    margin: auto;
+}
+
 /* CARDS */
 .cards {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
-    justify-content: center;
+    margin-top: 40px;
 }
 
 .card {
-    background: rgba(255,255,255,0.05);
+    background: #0a1f44;
     padding: 30px;
-    border-radius: 12px;
-    width: 300px;
-    backdrop-filter: blur(10px);
-    transition: 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-10px);
+    border-radius: 10px;
+    flex: 1;
+    min-width: 250px;
 }
 
 /* STEPS */
-.steps div {
-    margin: 20px 0;
+.steps {
+    display: flex;
+    justify-content: space-between;
 }
 
 /* CONTACT */
 .contact {
-    background: #111;
+    background: #0a1f44;
 }
 
 /* FOOTER */
@@ -102,18 +123,11 @@ footer {
 }
 
 .footer-links a {
-    margin: 0 10px;
-    color: #ff7a00;
+    color: #3b82f6;
 }
 
-/* ANIMATIONS */
-.fade {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: 1s;
-}
-
-.fade.show {
-    opacity: 1;
-    transform: translateY(0);
+.small {
+    font-size: 12px;
+    max-width: 800px;
+    margin: auto;
 }
