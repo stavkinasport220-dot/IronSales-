@@ -1,48 +1,56 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    color: #333;
+    font-family: 'Inter', sans-serif;
+    background: #0a0f1c;
+    color: white;
 }
 
+/* NAVBAR */
 .navbar {
+    position: fixed;
+    width: 100%;
+    padding: 20px 40px;
     display: flex;
     justify-content: space-between;
-    padding: 20px;
-    background: #0b3d5c;
-    color: white;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(10px);
 }
 
 .navbar a {
     color: white;
-    margin-left: 15px;
+    margin-left: 20px;
     text-decoration: none;
 }
 
+/* HERO */
 .hero {
-    text-align: center;
-    padding: 100px 20px;
-    background: linear-gradient(#0b3d5c, #145f8c);
-    color: white;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0a0f1c, #1a3a6e);
+}
+
+.hero h1 {
+    font-size: 3rem;
 }
 
 .hero button {
-    padding: 15px 25px;
+    padding: 15px 30px;
     background: #ff7a00;
     border: none;
     color: white;
-    font-size: 16px;
+    margin-top: 20px;
     cursor: pointer;
 }
 
+/* SECTIONS */
 .section {
-    padding: 60px 20px;
+    padding: 100px 20px;
     text-align: center;
 }
 
-.gray {
-    background: #f4f4f4;
-}
-
+/* GLASS CARDS */
 .cards {
     display: flex;
     justify-content: center;
@@ -50,38 +58,30 @@ body {
 }
 
 .card {
-    background: white;
-    padding: 20px;
-    width: 250px;
-    border-radius: 8px;
+    background: rgba(255,255,255,0.05);
+    padding: 30px;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    transition: 0.3s;
 }
 
-.steps div {
-    margin: 10px 0;
+.card:hover {
+    transform: translateY(-10px);
 }
 
-.benefits {
-    list-style: none;
-    padding: 0;
-}
-
+/* CONTACT */
 .contact {
-    background: #0b3d5c;
-    color: white;
+    background: #111;
 }
 
-footer {
-    padding: 20px;
-    text-align: center;
-    background: #222;
-    color: white;
+/* FADE ANIMATION */
+.fade {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 1s;
 }
 
-.footer-links a {
-    margin: 0 10px;
-    color: #ff7a00;
-}
-
-.legal {
-    padding: 40px;
+.fade.show {
+    opacity: 1;
+    transform: translateY(0);
 }
