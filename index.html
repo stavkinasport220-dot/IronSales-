@@ -1,210 +1,525 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IronSales</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IronSales - AI-Powered Qualification & Booking for Roofing Companies</title>
+    <style>
+        /* CSS VARIABLES & STYLING */
+        :root {
+            --bg-color: #0d0e12;
+            --card-bg: #161920;
+            --text-main: #ffffff;
+            --text-muted: #a0aec0;
+            --primary: #ff6b00; /* Accent deep orange */
+            --primary-hover: #e05e00;
+            --border-color: #2d3748;
+        }
 
-<link rel="stylesheet" href="styles.css">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: rgba(13, 14, 18, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            color: var(--text-main);
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 8rem 2rem 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 12rem 2rem 6rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            max-width: 900px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+        }
+
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        h2 {
+            font-size: 2.25rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        /* GRID LAYOUTS */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        .card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .card p {
+            color: var(--text-muted);
+        }
+
+        /* HOW IT WORKS STYLING */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-num {
+            background-color: var(--primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem auto;
+            font-weight: bold;
+        }
+
+        /* CONTACT FORM */
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            padding: 3rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: white;
+        }
+
+        .sms-notice {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+            line-height: 1.4;
+        }
+
+        /* MODAL POPUPS FOR LEGAL PAGES */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 2rem 1rem;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 3rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        .modal h1, .modal h2 {
+            text-align: left;
+            margin-bottom: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .modal h1 { font-size: 2rem; }
+        .modal h2 { font-size: 1.4rem; }
+
+        .modal p, .modal ul {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+        .modal ul { margin-left: 1.5rem; }
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 4rem 2rem;
+            text-align: center;
+            background-color: #090a0d;
+        }
+
+        .footer-compliance {
+            max-width: 800px;
+            margin: 0 auto 2rem auto;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            nav ul { display: none; } /* Kept simple for standard single page presentation */
+        }
+    </style>
 </head>
-
 <body>
 
-<header class="navbar">
-    <div class="container nav-inner">
-        <div class="logo">IronSales</div>
-        <nav>
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#how">How It Works</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </div>
-</header>
-
-<!-- HERO -->
-<section class="hero">
-    <div class="container">
-        <h3 class="tag">AI-Powered Lead Automation</h3>
-
-        <h1>Never Miss Another Roofing Lead: AI-Powered Qualification & Booking</h1>
-
-        <p class="hero-desc">
-            Automate your lead response, qualify prospects instantly, and fill your calendar with high-value roofing estimates.
-        </p>
-
-        <div class="hero-buttons">
-            <button onclick="scrollToContact()">Get a Free Demo</button>
-            
+    <!-- NAVIGATION -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">Iron<span>Sales</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#benefits">Benefits</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
         </div>
+    </header>
 
-        <div class="hero-stats">
-            <span>60-Second Response Time</span>
-            <span>24/7 Lead Coverage</span>
-            <span>SMS Compliant</span>
-        </div>
-    </div>
-</section>
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero">
+        <h1>Never Miss Another Roofing Lead:<br><span style="color: var(--primary);">AI-Powered Qualification & Booking</span></h1>
+        <p>Automate your lead response, qualify prospects instantly, and fill your calendar with high-value roofing estimates.</p>
+        <a href="#contact" class="btn">Get a Free Demo</a>
+    </section>
 
-<!-- ABOUT -->
-<section id="about" class="section">
-    <div class="container">
+    <!-- ABOUT SECTION -->
+    <section id="about">
         <h2>Your AI Partner for Roofing Growth</h2>
-
-        <p class="big-text">
-            At IronSales, we specialize in building intelligent systems that transform how roofing companies acquire and manage new leads. 
-            Our AI solutions ensure every inquiry is handled instantly, qualified efficiently, and converted into a booked appointment, 
-            allowing your team to focus on what they do best: building great roofs.
-        </p>
-
-        <p class="big-text">
-            We understand the unique challenges roofing contractors face — from storm-season surges to managing multiple crews. 
-            Our technology adapts to your business, scales with demand, and delivers consistent results around the clock.
-        </p>
-
-        <div class="cards">
-            <div class="card">
-                <h3>AI-First Approach</h3>
-                <p>Purpose-built automation designed specifically for the roofing industry.</p>
-            </div>
-
-            <div class="card">
-                <h3>Growth Focused</h3>
-                <p>Every feature is designed to increase your revenue and reduce wasted effort.</p>
-            </div>
-
-            <div class="card">
-                <h3>Reliable & Compliant</h3>
-                <p>Enterprise-grade systems with full SMS compliance and data protection.</p>
-            </div>
+        <div style="max-width: 800px; margin: 0 auto; text-align: center; color: var(--text-muted); font-size: 1.2rem;">
+            <p>At IronSales, we specialize in building intelligent systems that transform how roofing companies acquire and manage new leads. Our AI solutions ensure every inquiry is handled instantly, qualified efficiently, and converted into a booked appointment, allowing your team to focus on what they do best: building great roofs.</p>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- SERVICES -->
-<section id="services" class="section dark">
-    <div class="container">
+    <!-- SERVICES SECTION -->
+    <section id="services">
         <h2>How We Supercharge Your Lead Flow</h2>
-
-        <div class="cards">
-
+        <div class="grid">
             <div class="card">
-                <h4>01</h4>
                 <h3>Instant AI Lead Response</h3>
                 <p>Our custom AI agents engage new leads within seconds, providing immediate answers and a personalized experience, 24/7.</p>
             </div>
-
             <div class="card">
-                <h4>02</h4>
                 <h3>Automated Lead Qualification</h3>
                 <p>The AI asks precise qualifying questions to identify serious prospects, filtering out time-wasters before they reach your sales team.</p>
             </div>
-
             <div class="card">
-                <h4>03</h4>
                 <h3>Seamless Appointment Booking</h3>
                 <p>Qualified leads are automatically guided to book estimates directly into your calendar, eliminating manual scheduling and follow-ups.</p>
             </div>
-
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- HOW -->
-<section id="how" class="section">
-    <div class="container">
+    <!-- HOW IT WORKS SECTION -->
+    <section id="how-it-works">
         <h2>Simple. Smart. Scalable.</h2>
-
         <div class="steps">
-            <div>
-                <strong>STEP 1</strong><br>
-                Lead Inflow<br>
-                <span>New leads enter your system instantly from ads, website forms, or referrals.</span>
+            <div class="step">
+                <div class="step-num">1</div>
+                <h3>Lead Inflow</h3>
+                <p style="color: var(--text-muted); margin-top: 0.5rem;">New leads from your website or ads are instantly routed to our AI system.</p>
             </div>
-
-            <div>
-                <strong>STEP 2</strong><br>
-                AI Engagement<br>
-                <span>AI responds within seconds, asks questions, and qualifies the customer automatically.</span>
+            <div class="step">
+                <div class="step-num">2</div>
+                <h3>AI Engagement</h3>
+                <p style="color: var(--text-muted); margin-top: 0.5rem;">Our AI communicates with the lead via SMS, qualifying their needs and intent.</p>
             </div>
-
-            <div>
-                <strong>STEP 3</strong><br>
-                Calendar Filled<br>
-                <span>Qualified leads are automatically booked into your schedule without manual work.</span>
+            <div class="step">
+                <div class="step-num">3</div>
+                <h3>Calendar Filled</h3>
+                <p style="color: var(--text-muted); margin-top: 0.5rem;">Once qualified, the AI books an estimate directly into your team's calendar.</p>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- BENEFITS -->
-<section class="section dark">
-    <div class="container">
+    <!-- BENEFITS SECTION -->
+    <section id="benefits">
         <h2>Why Roofing Companies Choose AI Automation</h2>
-
-        <div class="cards">
-
+        <div class="grid">
             <div class="card">
-                <h2>&lt;60s</h2>
-                <p>Speed to Lead</p>
-                <span>We respond to every inquiry in under a minute to maximize conversion rates.</span>
+                <h3>Speed to Lead</h3>
+                <p>Respond to every inquiry in under 60 seconds, dramatically increasing conversion rates.</p>
             </div>
-
             <div class="card">
-                <h2>80%</h2>
-                <p>Less Manual Work</p>
-                <span>Automate repetitive lead handling so your team focuses only on high-value jobs.</span>
+                <h3>Efficiency & Cost Savings</h3>
+                <p>Reduce manual workload and overhead by automating repetitive lead management tasks.</p>
             </div>
-
             <div class="card">
-                <h2>3x</h2>
-                <p>More Bookings</p>
-                <span>Better response time and qualification means significantly higher appointment rates.</span>
+                <h3>More Qualified Appointments</h3>
+                <p>Focus your sales efforts only on prospects genuinely ready for an estimate, closing more deals.</p>
             </div>
-
             <div class="card">
-                <h2>24/7</h2>
-                <p>Availability</p>
-                <span>Your business never sleeps — every lead is handled instantly, day or night.</span>
+                <h3>24/7 Coverage</h3>
+                <p>Never miss a lead, even outside business hours, ensuring maximum opportunity capture.</p>
             </div>
-
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- CONTACT -->
-<section id="contact" class="section contact">
-    <div class="container">
+    <!-- CONTACT SECTION -->
+    <section id="contact">
         <h2>Ready to Transform Your Lead Process?</h2>
-
-        <p class="big-text">
-            Let's discuss how AI can grow your roofing business. Contact us for a free demo.
-        </p>
-
-        <p><strong>Email:</strong> ironsales.ai@gmail.com</p>
-        <p><strong>SMS:</strong> +1 (754) 237-5193</p>
-    </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-    <div class="container">
-        <p class="small">
-            Opt-in Consent: By submitting their contact information, customers agree to receive SMS messages regarding their inquiry.
-            Message and data rates may apply. Reply STOP to unsubscribe. Reply HELP for assistance.
-        </p>
-
-        <div class="footer-links">
-            <span>IS IronSales</span><br>
-            <a href="privacy.html">Privacy Policy</a> |
-            <a href="terms.html">Terms & Conditions</a>
+        <p style="text-align: center; color: var(--text-muted); margin-bottom: 2rem;">Let's discuss how AI can grow your roofing business. Contact us for a free consultation.</p>
+        
+        <div class="contact-container">
+            <form id="demo-form" onsubmit="event.preventDefault(); alert('Demo requested successfully!');">
+                <div class="form-group">
+                    <label>Business Name</label>
+                    <input type="text" required placeholder="Your Roofing Company">
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" required placeholder="(555) 555-5555">
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" required placeholder="name@yourcompany.com">
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Submit Demo Request</button>
+                <p class="sms-notice">By submitting your phone number, you explicitly consent to receive SMS messages regarding your inquiry from IronSales on behalf of our partner roofing companies. Message and data rates may apply. Reply STOP to unsubscribe at any time.</p>
+            </form>
+            <p style="text-align: center; margin-top: 2rem; font-size: 0.9rem; color: var(--text-muted);">Or email us directly at: <a href="mailto:contact@iron-sales.com" style="color: var(--primary); text-decoration: none;">contact@iron-sales.com</a></p>
         </div>
+    </section>
 
-        <p>© 2026 IronSales. All rights reserved.</p>
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-compliance">
+            <strong>Opt-in Consent:</strong> By submitting their contact information through our clients' web forms (e.g., for a quote request or service inquiry), customers explicitly agree to receive SMS messages regarding their inquiry from IronSales on behalf of our client roofing companies. Message and data rates may apply. Reply STOP to unsubscribe at any time. Reply HELP for assistance.
+        </div>
+        <p>Copyright © 2026 IronSales. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#" id="open-privacy">Privacy Policy</a> | 
+            <a href="#" id="open-terms">Terms & Conditions</a>
+        </div>
+    </footer>
+
+    <!-- PRIVACY POLICY MODAL -->
+    <div id="privacy-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-privacy">&times;</span>
+            <h1>Privacy Policy</h1>
+            <p><strong>Last Updated:</strong> June 30, 2026</p>
+            <p>This Privacy Policy describes how IronSales ("we," "us," or "our") collects, uses, and discloses information when you use our services or interact with our website. We are committed to protecting your privacy and handling your data in an open and transparent manner.</p>
+            
+            <h2>1. Information We Collect</h2>
+            <p>We collect information that you provide directly to us when you interact with our AI automation services on behalf of our client roofing companies. This may include:</p>
+            <ul>
+                <li><strong>Contact Information:</strong> Name, phone number, email address, and physical address (if provided during lead inquiry).</li>
+                <li><strong>Inquiry Details:</strong> Information related to your roofing needs or service requests.</li>
+                <li><strong>Communication Data:</strong> Records of your interactions with our AI systems (e.g., SMS messages).</li>
+            </ul>
+
+            <h2>2. How We Use Your Information</h2>
+            <p>We use the information we collect for the following purposes:</p>
+            <ul>
+                <li>Lead Qualification, Appointment Scheduling, and SMS Communications.</li>
+            </ul>
+
+            <h2>3. How We Share Your Information (SMS Compliance)</h2>
+            <p><strong>We do not sell, rent, or share your personal information with third parties. No mobile information or phone numbers will be shared with third parties or affiliates for marketing or promotional purposes. All the above categories exclude text messaging originator opt-in data and consent; this information will not be shared with any third parties.</strong></p>
+
+            <h2>4. Data Security</h2>
+            <p>We implement reasonable security measures to protect your information from unauthorized access, alteration, disclosure, or destruction.</p>
+
+            <h2>5. Your Choices & SMS Opt-Out</h2>
+            <p>By providing your phone number to our services, you consent to receive SMS notifications. <strong>You can stop receiving SMS messages from our services at any time by replying "STOP" to any message.</strong> If you wish to access or correct any personal information we hold about you, please contact us at contact@iron-sales.com.</p>
+
+            <h2>6. Changes to This Privacy Policy</h2>
+            <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.</p>
+
+            <h2>7. Contact Us</h2>
+            <p>If you have any questions about this Privacy Policy, please contact us by email: <strong>contact@iron-sales.com</strong></p>
+        </div>
     </div>
-</footer>
 
-<script src="script.js"></script>
+    <!-- TERMS & CONDITIONS MODAL -->
+    <div id="terms-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-terms">&times;</span>
+            <h1>Terms & Conditions</h1>
+            <p><strong>Last Updated:</strong> June 30, 2026</p>
+            
+            <h2>1. Services Provided</h2>
+            <p>IronSales AI Automation Agency provides AI-powered lead qualification and appointment scheduling services to roofing companies. Our services facilitate communication between potential customers and our client roofing companies via SMS.</p>
+
+            <h2>2. User Conduct</h2>
+            <p>You agree to use our services and interact with our AI systems respectfully and lawfully.</p>
+
+            <h2>3. Opt-in and Consent</h2>
+            <p>By providing your phone number and submitting an inquiry through our clients' web forms, you consent to receive SMS messages from IronSales on behalf of our client roofing companies regarding your inquiry. Message and data rates may apply. You may opt-out at any time by replying "STOP" to any message.</p>
+
+            <h2>4. Disclaimer of Warranties</h2>
+            <p>Our services are provided "as is" and "as available" without any warranties of any kind, either express or implied.</p>
+
+            <h2>5. Limitation of Liability</h2>
+            <p>To the fullest extent permitted by applicable law, IronSales shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use or inability to use the services.</p>
+
+            <h2>6. Governing Law</h2>
+            <p>These Terms shall be governed and construed in accordance with the laws of your state or province, without regard to its conflict of law provisions.</p>
+
+            <h2>7. Contact Us</h2>
+            <p>If you have any questions about these Terms, please contact us by email: <strong>contact@iron-sales.com</strong></p>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT FOR POPUPS -->
+    <script>
+        const privacyModal = document.getElementById('privacy-modal');
+        const termsModal = document.getElementById('terms-modal');
+        
+        document.getElementById('open-privacy').addEventListener('click', (e) => { e.preventDefault(); privacyModal.style.display = 'block'; });
+        document.getElementById('open-terms').addEventListener('click', (e) => { e.preventDefault(); termsModal.style.display = 'block'; });
+        
+        document.getElementById('close-privacy').addEventListener('click', () => privacyModal.style.display = 'none');
+        document.getElementById('close-terms').addEventListener('click', () => termsModal.style.display = 'none');
+
+        window.addEventListener('click', (e) => {
+            if (e.target === privacyModal) privacyModal.style.display = 'none';
+            if (e.target === termsModal) termsModal.style.display = 'none';
+        });
+    </script>
 </body>
 </html>
