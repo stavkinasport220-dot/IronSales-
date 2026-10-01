@@ -1,37 +1,29 @@
-/* =========================
-   INITIALIZE ANIMATIONS
-========================= */
-
-/*
-   We only activate the hidden/reveal
-   animation AFTER JavaScript has loaded.
-
-   This prevents the entire website from
-   becoming invisible if script.js fails.
-*/
-
-document.body.classList.add("js-ready");
+/* =========================================
+   IRONSALES JAVASCRIPT
+========================================= */
 
 
-/* =========================
+/* =========================================
    NAVIGATION
-========================= */
+========================================= */
 
 const menuToggle = document.getElementById("menuToggle");
 const navLinks = document.getElementById("navLinks");
 
 if (menuToggle && navLinks) {
 
-    menuToggle.addEventListener("click", () => {
+    menuToggle.addEventListener("click", function () {
+
         navLinks.classList.toggle("active");
+
     });
 
 }
 
 
-document.querySelectorAll(".nav-links a").forEach(link => {
+document.querySelectorAll(".nav-links a").forEach(function (link) {
 
-    link.addEventListener("click", () => {
+    link.addEventListener("click", function () {
 
         if (navLinks) {
             navLinks.classList.remove("active");
@@ -42,99 +34,43 @@ document.querySelectorAll(".nav-links a").forEach(link => {
 });
 
 
-/* =========================
+/* =========================================
    SMOOTH SCROLL
-========================= */
+========================================= */
 
 function scrollToContact() {
 
-    const contact = document.getElementById("contact");
+    const contact =
+        document.getElementById("contact");
 
-    if (contact) {
+    if (!contact) return;
 
-        contact.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
-
-    }
+    contact.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
 
 }
 
 
 function scrollToHow() {
 
-    const features = document.getElementById("features");
+    const features =
+        document.getElementById("features");
 
-    if (features) {
+    if (!features) return;
 
-        features.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
-
-    }
-
-}
-
-
-/* =========================
-   SCROLL REVEAL
-========================= */
-
-const revealElements =
-    document.querySelectorAll(".reveal");
-
-
-if ("IntersectionObserver" in window) {
-
-    const observer = new IntersectionObserver(
-        (entries) => {
-
-            entries.forEach(entry => {
-
-                if (entry.isIntersecting) {
-
-                    entry.target.classList.add("visible");
-
-                    observer.unobserve(entry.target);
-
-                }
-
-            });
-
-        },
-        {
-            threshold: 0.08
-        }
-    );
-
-
-    revealElements.forEach(element => {
-
-        observer.observe(element);
-
-    });
-
-} else {
-
-    /*
-       Fallback for browsers that don't
-       support IntersectionObserver.
-    */
-
-    revealElements.forEach(element => {
-
-        element.classList.add("visible");
-
+    features.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
     });
 
 }
 
 
-/* =========================
-   AI CHAT DEMO
-========================= */
+/* =========================================
+   AI CHAT
+========================================= */
 
 const chatButton =
     document.getElementById("chatButton");
@@ -151,7 +87,7 @@ const chatMessages =
 
 if (chatButton && chatBox) {
 
-    chatButton.addEventListener("click", () => {
+    chatButton.addEventListener("click", function () {
 
         chatBox.classList.add("open");
 
@@ -162,9 +98,9 @@ if (chatButton && chatBox) {
 }
 
 
-if (closeChat) {
+if (closeChat && chatBox && chatButton) {
 
-    closeChat.addEventListener("click", () => {
+    closeChat.addEventListener("click", function () {
 
         chatBox.classList.remove("open");
 
@@ -174,6 +110,10 @@ if (closeChat) {
 
 }
 
+
+/* =========================================
+   AI RESPONSES
+========================================= */
 
 const responses = {
 
@@ -191,12 +131,16 @@ const responses = {
 
 document.querySelectorAll(
     ".chat-options button"
-).forEach(button => {
+).forEach(function (button) {
 
-    button.addEventListener("click", () => {
+    button.addEventListener("click", function () {
+
+        if (!chatMessages) return;
+
 
         const question =
             button.dataset.question;
+
 
         const userMessage =
             document.createElement("div");
@@ -220,7 +164,7 @@ document.querySelectorAll(
         }
 
 
-        setTimeout(() => {
+        setTimeout(function () {
 
             const aiMessage =
                 document.createElement("div");
@@ -229,7 +173,8 @@ document.querySelectorAll(
                 "message ai";
 
             aiMessage.textContent =
-                responses[question];
+                responses[question] ||
+                "I can show you how IronSales works for your business.";
 
             chatMessages.appendChild(
                 aiMessage
@@ -240,7 +185,7 @@ document.querySelectorAll(
                 chatMessages.scrollHeight;
 
 
-            setTimeout(() => {
+            setTimeout(function () {
 
                 const followUp =
                     document.createElement("div");
@@ -249,24 +194,31 @@ document.querySelectorAll(
                     "chat-options";
 
 
-                const button =
+                const followUpButton =
                     document.createElement("button");
 
-                button.textContent =
+                followUpButton.textContent =
                     "I want to see it for my business →";
 
 
-                button.addEventListener(
+                followUpButton.addEventListener(
                     "click",
                     scrollToContact
                 );
 
 
-                followUp.appendChild(button);
+                followUp.appendChild(
+                    followUpButton
+                );
+
 
                 chatMessages.appendChild(
                     followUp
                 );
+
+
+                chatMessages.scrollTop =
+                    chatMessages.scrollHeight;
 
             }, 500);
 
@@ -277,9 +229,9 @@ document.querySelectorAll(
 });
 
 
-/* =========================
+/* =========================================
    LEAD FORM
-========================= */
+========================================= */
 
 const leadForm =
     document.getElementById("leadForm");
@@ -292,28 +244,28 @@ if (leadForm) {
 
     leadForm.addEventListener(
         "submit",
-        function(event) {
+        function (event) {
 
             event.preventDefault();
 
 
             const name =
-                document.getElementById("name").value;
+                document.getElementById("name")?.value || "";
 
             const business =
-                document.getElementById("business").value;
+                document.getElementById("business")?.value || "";
 
             const email =
-                document.getElementById("email").value;
+                document.getElementById("email")?.value || "";
 
             const phone =
-                document.getElementById("phone").value;
+                document.getElementById("phone")?.value || "";
 
             const businessType =
-                document.getElementById("businessType").value;
+                document.getElementById("businessType")?.value || "";
 
             const message =
-                document.getElementById("message").value;
+                document.getElementById("message")?.value || "";
 
 
             const emailBody = `
@@ -343,8 +295,12 @@ ${message}
                 );
 
 
-            formMessage.textContent =
-                "Opening your email app...";
+            if (formMessage) {
+
+                formMessage.textContent =
+                    "Opening your email app...";
+
+            }
 
 
             window.location.href =
