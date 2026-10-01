@@ -19,7 +19,7 @@ html {
 
 body {
     margin: 0;
-    font-family: "Inter", sans-serif;
+    font-family: "Inter", Arial, sans-serif;
     background: var(--black);
     color: var(--white);
     overflow-x: hidden;
@@ -38,11 +38,13 @@ button {
 
 .container {
     width: min(1100px, calc(100% - 40px));
-    margin: auto;
+    margin: 0 auto;
 }
 
 
-/* ================= NAVBAR ================= */
+/* =========================================
+   NAVBAR
+========================================= */
 
 .navbar {
     position: fixed;
@@ -51,7 +53,7 @@ button {
     width: 100%;
     z-index: 1000;
 
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.94);
     backdrop-filter: blur(15px);
 
     border-bottom: 1px solid #111827;
@@ -65,14 +67,14 @@ button {
     justify-content: space-between;
 }
 
-.logo,
-.footer-logo {
+.logo {
     color: white;
     text-decoration: none;
 
     font-size: 25px;
     font-weight: 800;
-    letter-spacing: -1px;
+
+    letter-spacing: -1.5px;
 }
 
 .logo span,
@@ -82,15 +84,17 @@ button {
 
 .nav-links {
     display: flex;
+    align-items: center;
     gap: 30px;
 }
 
 .nav-links a {
     color: #cbd5e1;
     text-decoration: none;
+
     font-size: 14px;
 
-    transition: 0.25s;
+    transition: color 0.2s ease;
 }
 
 .nav-links a:hover {
@@ -99,15 +103,16 @@ button {
 
 .nav-cta {
     border: 0;
+    border-radius: 7px;
+
+    padding: 12px 20px;
+
     background: var(--blue);
     color: white;
 
-    padding: 11px 18px;
-    border-radius: 7px;
+    font-weight: 700;
 
-    font-weight: 600;
-
-    transition: 0.25s;
+    transition: 0.2s ease;
 }
 
 .nav-cta:hover {
@@ -118,15 +123,18 @@ button {
 .menu-toggle {
     display: none;
 
-    background: transparent;
     border: 0;
+    background: transparent;
+
     color: white;
 
     font-size: 25px;
 }
 
 
-/* ================= HERO ================= */
+/* =========================================
+   HERO
+========================================= */
 
 .hero {
     min-height: 850px;
@@ -222,12 +230,12 @@ button {
 .hero-desc {
     max-width: 700px;
 
+    margin-bottom: 35px;
+
     color: #b8c4d8;
 
     font-size: 20px;
     line-height: 1.7;
-
-    margin-bottom: 35px;
 }
 
 .hero-buttons {
@@ -246,12 +254,13 @@ button {
     font-size: 15px;
     font-weight: 600;
 
-    transition: 0.25s;
+    transition: 0.2s ease;
 }
 
 .primary-btn {
-    background: var(--blue);
     border: 1px solid var(--blue);
+
+    background: var(--blue);
     color: white;
 }
 
@@ -265,8 +274,9 @@ button {
 }
 
 .secondary-btn {
-    background: transparent;
     border: 1px solid #334155;
+
+    background: transparent;
     color: white;
 }
 
@@ -277,8 +287,8 @@ button {
 
 .hero-trust {
     display: flex;
-    gap: 35px;
     flex-wrap: wrap;
+    gap: 35px;
 }
 
 .trust-item {
@@ -314,7 +324,9 @@ button {
 }
 
 
-/* ================= SECTIONS ================= */
+/* =========================================
+   GENERAL SECTIONS
+========================================= */
 
 .section {
     padding: 120px 0;
@@ -356,10 +368,13 @@ button {
 }
 
 
-/* ================= DASHBOARD ================= */
+/* =========================================
+   DASHBOARD
+========================================= */
 
 .dashboard-section {
     padding: 110px 0;
+
     background: #02050c;
 }
 
@@ -371,12 +386,11 @@ button {
     border: 1px solid #17233a;
     border-radius: 16px;
 
-    background:
-        linear-gradient(
-            145deg,
-            #071123,
-            #030712
-        );
+    background: linear-gradient(
+        145deg,
+        #071123,
+        #030712
+    );
 
     box-shadow: 0 30px 100px rgba(0, 0, 0, 0.6);
 }
@@ -402,6 +416,7 @@ button {
 
 .dashboard-top h3 {
     margin: 7px 0 0;
+
     font-size: 20px;
 }
 
@@ -466,9 +481,10 @@ button {
 }
 
 .pipeline {
+    overflow: hidden;
+
     border: 1px solid #172033;
     border-radius: 10px;
-    overflow: hidden;
 }
 
 .pipeline-header {
@@ -516,7 +532,6 @@ button {
     border-radius: 50%;
 
     background: #0a1f44;
-
     color: #bfdbfe;
 
     font-size: 11px;
@@ -536,9 +551,8 @@ button {
 .status {
     padding: 5px 9px;
 
-    border-radius: 5px;
-
     border: 1px solid #1e3a6b;
+    border-radius: 5px;
 
     background: #071a39;
 
@@ -558,7 +572,9 @@ button {
 }
 
 
-/* ================= ABOUT ================= */
+/* =========================================
+   ABOUT
+========================================= */
 
 .about-content {
     display: grid;
@@ -626,7 +642,7 @@ button {
 
     background: #050b18;
 
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 .card:hover {
@@ -643,6 +659,7 @@ button {
 
 .card h3 {
     margin: 15px 0 10px;
+
     font-size: 20px;
 }
 
@@ -655,7 +672,9 @@ button {
 }
 
 
-/* ================= FEATURES ================= */
+/* =========================================
+   FEATURES
+========================================= */
 
 .feature-grid {
     display: grid;
@@ -687,6 +706,7 @@ button {
 
 .feature h3 {
     margin: 20px 0 12px;
+
     font-size: 23px;
 }
 
@@ -699,7 +719,9 @@ button {
 }
 
 
-/* ================= INDUSTRIES ================= */
+/* =========================================
+   INDUSTRIES
+========================================= */
 
 .industry-grid {
     display: grid;
@@ -718,7 +740,7 @@ button {
 
     background: #030712;
 
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 .industry-card:hover {
@@ -735,6 +757,7 @@ button {
 
 .industry-card h3 {
     margin: 22px 0 8px;
+
     font-size: 21px;
 }
 
@@ -748,7 +771,9 @@ button {
 }
 
 
-/* ================= CHAT ================= */
+/* =========================================
+   CHAT WIDGET
+========================================= */
 
 .chat-widget {
     position: fixed;
@@ -794,6 +819,7 @@ button {
 
 .chat-button strong {
     display: block;
+
     font-size: 12px;
 }
 
@@ -813,12 +839,12 @@ button {
 .chat-box {
     display: none;
 
-    width: 340px;
-
     position: absolute;
 
     right: 0;
     bottom: 0;
+
+    width: 340px;
 
     overflow: hidden;
 
@@ -896,6 +922,7 @@ button {
 
 .message.user {
     margin-left: auto;
+
     background: var(--blue);
 }
 
@@ -939,7 +966,9 @@ button {
 }
 
 
-/* ================= CONTACT ================= */
+/* =========================================
+   CONTACT
+========================================= */
 
 .contact {
     background:
@@ -1013,6 +1042,7 @@ button {
 
 .form-header h3 {
     margin: 0;
+
     font-size: 24px;
 }
 
@@ -1061,8 +1091,6 @@ button {
     color: white;
 
     font-size: 13px;
-
-    transition: 0.2s;
 }
 
 .form-group input:focus,
@@ -1090,6 +1118,7 @@ button {
 
 .consent input {
     margin-top: 2px;
+
     accent-color: var(--blue);
 }
 
@@ -1108,7 +1137,7 @@ button {
 
     font-weight: 700;
 
-    transition: 0.25s;
+    transition: 0.2s ease;
 }
 
 .form-button:hover {
@@ -1124,7 +1153,9 @@ button {
 }
 
 
-/* ================= FOOTER ================= */
+/* =========================================
+   FOOTER
+========================================= */
 
 footer {
     padding: 55px 0;
@@ -1136,12 +1167,14 @@ footer {
     text-align: center;
 }
 
-.footer-top {
-    margin-bottom: 25px;
+.footer-logo {
+    font-size: 25px;
+    font-weight: 800;
 }
 
 .footer-top p {
     color: #64748b;
+
     font-size: 12px;
 }
 
@@ -1178,45 +1211,14 @@ footer {
 
 .copyright {
     color: #334155;
+
     font-size: 11px;
 }
 
 
-/* =================
-   REVEAL ANIMATIONS
-================= */
-
-/*
-   IMPORTANT:
-   Content is visible by default.
-   JavaScript adds "js-ready" to body before
-   animations are activated.
-*/
-
-.reveal {
-    opacity: 1;
-    transform: none;
-}
-
-
-/* Only hide animated content when JS is actually working */
-
-body.js-ready .reveal {
-    opacity: 0;
-    transform: translateY(28px);
-
-    transition:
-        opacity 0.7s ease,
-        transform 0.7s ease;
-}
-
-body.js-ready .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-
-/* ================= MOBILE ================= */
+/* =========================================
+   MOBILE
+========================================= */
 
 @media (max-width: 850px) {
 
@@ -1308,7 +1310,7 @@ body.js-ready .reveal.visible {
 @media (max-width: 600px) {
 
     .container {
-        width: min(100% - 30px, 1100px);
+        width: calc(100% - 30px);
     }
 
     .section,
@@ -1330,7 +1332,6 @@ body.js-ready .reveal.visible {
 
     .hero-buttons {
         flex-direction: column;
-        align-items: stretch;
     }
 
     .primary-btn,
@@ -1340,10 +1341,6 @@ body.js-ready .reveal.visible {
 
     .dashboard {
         padding: 15px;
-    }
-
-    .dashboard-stats {
-        grid-template-columns: 1fr 1fr;
     }
 
     .dashboard-card {
@@ -1382,25 +1379,5 @@ body.js-ready .reveal.visible {
     .chat-widget {
         right: 15px;
         bottom: 15px;
-    }
-}
-
-
-/* ================= REDUCED MOTION ================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-    html {
-        scroll-behavior: auto;
-    }
-
-    body.js-ready .reveal {
-        opacity: 1;
-        transform: none;
-        transition: none;
-    }
-
-    * {
-        transition-duration: 0.01ms !important;
     }
 }
