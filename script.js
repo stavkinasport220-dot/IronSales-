@@ -1,18 +1,44 @@
 /* =========================
+   INITIALIZE ANIMATIONS
+========================= */
+
+/*
+   We only activate the hidden/reveal
+   animation AFTER JavaScript has loaded.
+
+   This prevents the entire website from
+   becoming invisible if script.js fails.
+*/
+
+document.body.classList.add("js-ready");
+
+
+/* =========================
    NAVIGATION
 ========================= */
 
 const menuToggle = document.getElementById("menuToggle");
 const navLinks = document.getElementById("navLinks");
 
-menuToggle.addEventListener("click", () => {
-    navLinks.classList.toggle("active");
-});
+if (menuToggle && navLinks) {
+
+    menuToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+    });
+
+}
+
 
 document.querySelectorAll(".nav-links a").forEach(link => {
+
     link.addEventListener("click", () => {
-        navLinks.classList.remove("active");
+
+        if (navLinks) {
+            navLinks.classList.remove("active");
+        }
+
     });
+
 });
 
 
@@ -21,15 +47,34 @@ document.querySelectorAll(".nav-links a").forEach(link => {
 ========================= */
 
 function scrollToContact() {
-    document.getElementById("contact").scrollIntoView({
-        behavior: "smooth"
-    });
+
+    const contact = document.getElementById("contact");
+
+    if (contact) {
+
+        contact.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    }
+
 }
 
+
 function scrollToHow() {
-    document.getElementById("features").scrollIntoView({
-        behavior: "smooth"
-    });
+
+    const features = document.getElementById("features");
+
+    if (features) {
+
+        features.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    }
+
 }
 
 
@@ -37,58 +82,97 @@ function scrollToHow() {
    SCROLL REVEAL
 ========================= */
 
-const revealElements = document.querySelectorAll(".reveal");
+const revealElements =
+    document.querySelectorAll(".reveal");
 
-const observer = new IntersectionObserver(
-    (entries) => {
 
-        entries.forEach(entry => {
+if ("IntersectionObserver" in window) {
 
-            if (entry.isIntersecting) {
+    const observer = new IntersectionObserver(
+        (entries) => {
 
-                entry.target.classList.add("visible");
+            entries.forEach(entry => {
 
-                observer.unobserve(entry.target);
+                if (entry.isIntersecting) {
 
-            }
+                    entry.target.classList.add("visible");
 
-        });
+                    observer.unobserve(entry.target);
 
-    },
-    {
-        threshold: 0.12
-    }
-);
+                }
 
-revealElements.forEach(element => {
-    observer.observe(element);
-});
+            });
+
+        },
+        {
+            threshold: 0.08
+        }
+    );
+
+
+    revealElements.forEach(element => {
+
+        observer.observe(element);
+
+    });
+
+} else {
+
+    /*
+       Fallback for browsers that don't
+       support IntersectionObserver.
+    */
+
+    revealElements.forEach(element => {
+
+        element.classList.add("visible");
+
+    });
+
+}
 
 
 /* =========================
    AI CHAT DEMO
 ========================= */
 
-const chatButton = document.getElementById("chatButton");
-const chatBox = document.getElementById("chatBox");
-const closeChat = document.getElementById("closeChat");
-const chatMessages = document.getElementById("chatMessages");
+const chatButton =
+    document.getElementById("chatButton");
 
-chatButton.addEventListener("click", () => {
+const chatBox =
+    document.getElementById("chatBox");
 
-    chatBox.classList.add("open");
+const closeChat =
+    document.getElementById("closeChat");
 
-    chatButton.style.display = "none";
+const chatMessages =
+    document.getElementById("chatMessages");
 
-});
 
-closeChat.addEventListener("click", () => {
+if (chatButton && chatBox) {
 
-    chatBox.classList.remove("open");
+    chatButton.addEventListener("click", () => {
 
-    chatButton.style.display = "flex";
+        chatBox.classList.add("open");
 
-});
+        chatButton.style.display = "none";
+
+    });
+
+}
+
+
+if (closeChat) {
+
+    closeChat.addEventListener("click", () => {
+
+        chatBox.classList.remove("open");
+
+        chatButton.style.display = "flex";
+
+    });
+
+}
 
 
 const responses = {
@@ -105,22 +189,31 @@ const responses = {
 };
 
 
-document.querySelectorAll(".chat-options button").forEach(button => {
+document.querySelectorAll(
+    ".chat-options button"
+).forEach(button => {
 
     button.addEventListener("click", () => {
 
-        const question = button.dataset.question;
+        const question =
+            button.dataset.question;
 
-        const userMessage = document.createElement("div");
+        const userMessage =
+            document.createElement("div");
 
-        userMessage.className = "message user";
+        userMessage.className =
+            "message user";
 
-        userMessage.textContent = question;
+        userMessage.textContent =
+            question;
 
-        chatMessages.appendChild(userMessage);
+        chatMessages.appendChild(
+            userMessage
+        );
 
 
-        const options = document.querySelector(".chat-options");
+        const options =
+            document.querySelector(".chat-options");
 
         if (options) {
             options.remove();
@@ -129,30 +222,51 @@ document.querySelectorAll(".chat-options button").forEach(button => {
 
         setTimeout(() => {
 
-            const aiMessage = document.createElement("div");
+            const aiMessage =
+                document.createElement("div");
 
-            aiMessage.className = "message ai";
+            aiMessage.className =
+                "message ai";
 
-            aiMessage.textContent = responses[question];
+            aiMessage.textContent =
+                responses[question];
 
-            chatMessages.appendChild(aiMessage);
+            chatMessages.appendChild(
+                aiMessage
+            );
 
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            chatMessages.scrollTop =
+                chatMessages.scrollHeight;
 
 
             setTimeout(() => {
 
-                const followUp = document.createElement("div");
+                const followUp =
+                    document.createElement("div");
 
-                followUp.className = "chat-options";
+                followUp.className =
+                    "chat-options";
 
-                followUp.innerHTML = `
-                    <button onclick="scrollToContact()">
-                        I want to see it for my business →
-                    </button>
-                `;
 
-                chatMessages.appendChild(followUp);
+                const button =
+                    document.createElement("button");
+
+                button.textContent =
+                    "I want to see it for my business →";
+
+
+                button.addEventListener(
+                    "click",
+                    scrollToContact
+                );
+
+
+                followUp.appendChild(button);
+
+                chatMessages.appendChild(
+                    followUp
+                );
 
             }, 500);
 
@@ -167,22 +281,42 @@ document.querySelectorAll(".chat-options button").forEach(button => {
    LEAD FORM
 ========================= */
 
-const leadForm = document.getElementById("leadForm");
-const formMessage = document.getElementById("formMessage");
+const leadForm =
+    document.getElementById("leadForm");
 
-leadForm.addEventListener("submit", function(event) {
-
-    event.preventDefault();
-
-    const name = document.getElementById("name").value;
-    const business = document.getElementById("business").value;
-    const email = document.getElementById("email").value;
-    const phone = document.getElementById("phone").value;
-    const businessType = document.getElementById("businessType").value;
-    const message = document.getElementById("message").value;
+const formMessage =
+    document.getElementById("formMessage");
 
 
-    const emailBody = `
+if (leadForm) {
+
+    leadForm.addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const name =
+                document.getElementById("name").value;
+
+            const business =
+                document.getElementById("business").value;
+
+            const email =
+                document.getElementById("email").value;
+
+            const phone =
+                document.getElementById("phone").value;
+
+            const businessType =
+                document.getElementById("businessType").value;
+
+            const message =
+                document.getElementById("message").value;
+
+
+            const emailBody = `
 New IronSales Demo Request
 
 Name: ${name}
@@ -193,21 +327,30 @@ Business Type: ${businessType}
 
 Message:
 ${message}
-    `;
+            `;
 
 
-    const mailtoUrl =
-        "mailto:ironsales.ai@gmail.com" +
-        "?subject=" +
-        encodeURIComponent("New IronSales Demo Request - " + business) +
-        "&body=" +
-        encodeURIComponent(emailBody);
+            const mailtoUrl =
+                "mailto:ironsales.ai@gmail.com" +
+                "?subject=" +
+                encodeURIComponent(
+                    "New IronSales Demo Request - " +
+                    business
+                ) +
+                "&body=" +
+                encodeURIComponent(
+                    emailBody
+                );
 
 
-    formMessage.textContent =
-        "Your request is ready. Opening your email app...";
+            formMessage.textContent =
+                "Opening your email app...";
 
 
-    window.location.href = mailtoUrl;
+            window.location.href =
+                mailtoUrl;
 
-});
+        }
+    );
+
+}
