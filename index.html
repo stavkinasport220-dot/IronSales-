@@ -13,7 +13,7 @@
 
     <meta
         name="description"
-        content="IronSales provides 24/7 AI-powered phone receptionists that answer calls, qualify leads, and book appointments automatically for local service businesses."
+        content="IronSales provides 24/7 AI-powered phone receptionists that answer calls, qualify leads, and book appointments for local service businesses."
     >
 
     <meta name="robots" content="index, follow">
@@ -23,26 +23,19 @@
         href="https://iron-sales.com/"
     >
 
-    <!-- =========================================
-         FAVICON - EXACT IS LOGO
-    ========================================= -->
-
+    <!-- EXACT IS LOGO / FAVICON -->
     <link
         rel="icon"
         type="image/png"
-        href="/favicon.png"
+        href="/logo.png"
     >
 
     <link
         rel="apple-touch-icon"
-        href="/favicon.png"
+        href="/logo.png"
     >
 
-
-    <!-- =========================================
-         SOCIAL
-    ========================================= -->
-
+    <!-- SOCIAL -->
     <meta
         property="og:title"
         content="IronSales | AI Receptionist for Local Service Businesses"
@@ -53,54 +46,43 @@
         content="Never miss another client call. IronSales answers, qualifies, and books leads automatically — 24/7."
     >
 
-    <meta
-        property="og:type"
-        content="website"
-    >
+    <meta property="og:type" content="website">
 
     <meta
         property="og:url"
         content="https://iron-sales.com/"
     >
 
+    <meta
+        property="og:image"
+        content="https://iron-sales.com/logo.png"
+    >
 
-    <!-- =========================================
-         FONT
-    ========================================= -->
-
+    <!-- FONT -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
         rel="stylesheet"
     >
 
-
-    <!-- =========================================
-         CSS
-    ========================================= -->
-
+    <!-- CSS -->
     <link
         rel="stylesheet"
-        href="styles.css?v=20"
+        href="styles.css?v=30"
     >
 
-
-    <!-- =========================================
-         STRUCTURED DATA
-    ========================================= -->
-
+    <!-- ORGANIZATION DATA -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "IronSales",
         "url": "https://iron-sales.com/",
+        "logo": "https://iron-sales.com/logo.png",
         "email": "ironsales.ai@gmail.com",
         "telephone": "+1-954-417-5240",
-        "logo": "https://iron-sales.com/favicon.png",
         "description": "AI-powered phone reception and lead automation for local service businesses."
     }
     </script>
-
 </head>
 
 
@@ -115,52 +97,34 @@
 
     <div class="container nav-inner">
 
-
-        <!-- EXACT IS LOGO ONLY -->
-
         <a
             href="/"
-            class="brand-logo-link"
+            class="brand"
             aria-label="IronSales Home"
         >
-
             <img
-                src="/favicon.png"
+                src="/logo.png"
                 alt="IronSales"
                 class="brand-logo"
             >
-
         </a>
 
 
         <nav
             class="nav-links"
             id="navLinks"
-            aria-label="Primary navigation"
+            aria-label="Main navigation"
         >
-
-            <a href="#about">
-                About
-            </a>
-
-            <a href="#features">
-                How It Works
-            </a>
-
-            <a href="#industries">
-                Industries
-            </a>
-
-            <a href="#contact">
-                Contact
-            </a>
-
+            <a href="#about">About</a>
+            <a href="#features">How It Works</a>
+            <a href="#industries">Industries</a>
+            <a href="#contact">Contact</a>
         </nav>
 
 
         <button
-            type="button"
             class="nav-cta"
+            type="button"
             onclick="scrollToContact()"
         >
             Get a Free Demo
@@ -168,16 +132,15 @@
 
 
         <button
-            type="button"
             class="menu-toggle"
             id="menuToggle"
+            type="button"
             aria-label="Open navigation"
-            aria-controls="navLinks"
             aria-expanded="false"
+            aria-controls="navLinks"
         >
             ☰
         </button>
-
 
     </div>
 
@@ -188,133 +151,88 @@
      HERO
 ========================================= -->
 
+<main>
+
 <section class="hero">
 
     <div class="hero-glow"></div>
 
-
     <div class="container hero-content">
 
-
         <div class="hero-badge">
-
             <span></span>
-
             24/7 AI-Powered Receptionist
-
         </div>
 
 
         <h1>
-
             Never Miss Another
-
-            <span>
-                Client Call.
-            </span>
-
+            <span>Client Call.</span>
         </h1>
 
 
         <p class="hero-desc">
-
-            Your AI receptionist answers every call, qualifies every
-            opportunity, and books appointments directly into your calendar —
+            Your AI receptionist answers incoming calls, qualifies
+            opportunities, and books appointments directly into your calendar —
             24/7.
-
         </p>
 
 
         <div class="hero-buttons">
 
-
             <button
-                type="button"
                 class="primary-btn"
+                type="button"
                 onclick="scrollToContact()"
             >
-
                 Get a Free Demo
-
                 <span>→</span>
-
             </button>
 
 
             <button
-                type="button"
                 class="secondary-btn"
+                type="button"
                 onclick="scrollToHow()"
             >
                 See How It Works
             </button>
-
 
         </div>
 
 
         <div class="hero-trust">
 
-
             <div class="trust-item">
-
                 <span class="trust-dot"></span>
 
                 <div>
-
-                    <strong>
-                        24/7 Call Answering
-                    </strong>
-
-                    <small>
-                        Never miss an opportunity
-                    </small>
-
+                    <strong>24/7 Call Answering</strong>
+                    <small>Never miss an opportunity</small>
                 </div>
-
             </div>
 
 
             <div class="trust-item">
-
                 <span class="trust-dot"></span>
 
                 <div>
-
-                    <strong>
-                        Instant Qualification
-                    </strong>
-
-                    <small>
-                        Identify serious prospects
-                    </small>
-
+                    <strong>Instant Qualification</strong>
+                    <small>Capture the details you need</small>
                 </div>
-
             </div>
 
 
             <div class="trust-item">
-
                 <span class="trust-dot"></span>
 
                 <div>
-
-                    <strong>
-                        Automatic Booking
-                    </strong>
-
-                    <small>
-                        Fill your calendar
-                    </small>
-
+                    <strong>Automatic Booking</strong>
+                    <small>Keep your calendar moving</small>
                 </div>
-
             </div>
-
 
         </div>
-
 
     </div>
 
@@ -322,13 +240,12 @@
 
 
 <!-- =========================================
-     DASHBOARD
+     DASHBOARD PREVIEW
 ========================================= -->
 
 <section class="dashboard-section">
 
     <div class="container">
-
 
         <div class="section-label">
             YOUR AI RECEPTIONIST
@@ -341,21 +258,16 @@
 
 
         <p class="section-intro">
-
-            IronSales works behind the scenes to make sure every caller gets
-            an immediate response and every qualified opportunity keeps moving.
-
+            IronSales helps keep every caller moving forward, even when
+            you're busy, on a job, or away from the phone.
         </p>
 
 
         <div class="dashboard">
 
-
             <div class="dashboard-top">
 
-
                 <div>
-
                     <span class="dashboard-label">
                         AI RECEPTIONIST
                     </span>
@@ -363,229 +275,130 @@
                     <h3>
                         IronSales Dashboard
                     </h3>
-
                 </div>
 
 
                 <div class="live-status">
-
                     <span></span>
-
                     SYSTEM ACTIVE
-
                 </div>
-
 
             </div>
 
 
             <div class="dashboard-stats">
 
-
                 <div class="dashboard-card">
-
-                    <span>
-                        NEW CALLS
-                    </span>
-
-                    <strong>
-                        48
-                    </strong>
-
-                    <small>
-                        Today
-                    </small>
-
+                    <span>NEW CALLS</span>
+                    <strong>48</strong>
+                    <small>Today</small>
                 </div>
 
 
                 <div class="dashboard-card">
-
-                    <span>
-                        QUALIFIED
-                    </span>
-
-                    <strong>
-                        29
-                    </strong>
-
-                    <small>
-                        Opportunities
-                    </small>
-
+                    <span>QUALIFIED</span>
+                    <strong>29</strong>
+                    <small>Opportunities</small>
                 </div>
 
 
                 <div class="dashboard-card">
-
-                    <span>
-                        BOOKED
-                    </span>
-
-                    <strong>
-                        17
-                    </strong>
-
-                    <small>
-                        Appointments
-                    </small>
-
+                    <span>BOOKED</span>
+                    <strong>17</strong>
+                    <small>Appointments</small>
                 </div>
 
 
                 <div class="dashboard-card">
-
-                    <span>
-                        AFTER HOURS
-                    </span>
-
-                    <strong>
-                        12
-                    </strong>
-
-                    <small>
-                        Calls captured
-                    </small>
-
+                    <span>AFTER HOURS</span>
+                    <strong>12</strong>
+                    <small>Calls captured</small>
                 </div>
-
 
             </div>
 
 
             <div class="pipeline">
 
-
                 <div class="pipeline-header">
-
-                    <strong>
-                        Recent Opportunities
-                    </strong>
-
-                    <span>
-                        View All →
-                    </span>
-
+                    <strong>Recent Opportunities</strong>
+                    <span>Live Preview</span>
                 </div>
 
 
                 <div class="lead-row">
 
-
                     <div class="lead-info">
-
 
                         <div class="lead-avatar">
                             JM
                         </div>
 
-
                         <div>
-
-                            <strong>
-                                James Miller
-                            </strong>
-
-                            <small>
-                                HVAC Service Request
-                            </small>
-
+                            <strong>James Miller</strong>
+                            <small>HVAC Service Request</small>
                         </div>
 
-
                     </div>
-
 
                     <span class="status">
                         BOOKED
                     </span>
 
-
                 </div>
 
 
                 <div class="lead-row">
 
-
                     <div class="lead-info">
-
 
                         <div class="lead-avatar">
                             SR
                         </div>
 
-
                         <div>
-
-                            <strong>
-                                Sarah Roberts
-                            </strong>
-
-                            <small>
-                                Plumbing Estimate
-                            </small>
-
+                            <strong>Sarah Roberts</strong>
+                            <small>Plumbing Estimate</small>
                         </div>
 
-
                     </div>
-
 
                     <span class="status">
                         QUALIFIED
                     </span>
-
 
                 </div>
 
 
                 <div class="lead-row">
 
-
                     <div class="lead-info">
-
 
                         <div class="lead-avatar">
                             DK
                         </div>
 
-
                         <div>
-
-                            <strong>
-                                David King
-                            </strong>
-
-                            <small>
-                                Electrical Service
-                            </small>
-
+                            <strong>David King</strong>
+                            <small>Electrical Service</small>
                         </div>
 
-
                     </div>
-
 
                     <span class="status">
                         CONTACTED
                     </span>
 
-
                 </div>
 
-
             </div>
-
 
         </div>
 
 
         <p class="dashboard-note">
-
-            *Illustrative dashboard shown for demonstration purposes.
-
+            Illustrative dashboard shown for demonstration purposes.
         </p>
-
 
     </div>
 
@@ -603,114 +416,83 @@
 
     <div class="container">
 
-
         <div class="section-label">
             WHY IRONSALES
         </div>
 
 
         <h2>
-
             Your business shouldn't stop<br>
-
             when you can't answer the phone.
-
         </h2>
 
 
         <div class="about-content">
 
-
             <div class="about-text">
 
-
                 <p>
-
                     Running a local service business means you're constantly
                     moving — meeting customers, managing crews, driving between
-                    jobs, or handling emergencies.
-
+                    jobs, and handling urgent work.
                 </p>
 
 
                 <p>
-
-                    IronSales gives your business an intelligent AI phone
-                    receptionist that answers incoming calls instantly,
-                    speaks naturally with customers, qualifies their needs,
-                    and books appointments for you.
-
+                    IronSales gives your business an AI phone receptionist
+                    designed to answer incoming calls, speak naturally with
+                    customers, collect important information, and help schedule
+                    appointments.
                 </p>
 
 
                 <p>
-
-                    No missed calls. No playing phone tag. No losing potential
-                    customers because you couldn't answer.
-
+                    Spend less time chasing missed calls and more time focusing
+                    on the work that grows your business.
                 </p>
-
 
             </div>
 
 
             <div class="about-highlight">
 
-
                 <div class="highlight-line"></div>
 
-
                 <h3>
-
                     You handle the work.
-
                     <br>
-
-                    <span>
-                        IronSales handles the calls.
-                    </span>
-
+                    <span>IronSales handles the calls.</span>
                 </h3>
 
-
                 <p>
-
-                    Stay focused on your customers while your AI receptionist
-                    handles the phone.
-
+                    Stay focused in the field while your phone system keeps
+                    new opportunities moving.
                 </p>
 
-
             </div>
-
 
         </div>
 
 
         <div class="cards">
 
-
-            <div class="card">
+            <article class="card">
 
                 <div class="card-number">
                     01
                 </div>
 
-                <h3>
-                    24/7 Coverage
-                </h3>
+                <h3>24/7 Coverage</h3>
 
                 <p>
-
-                    Your AI receptionist answers calls around the clock,
-                    including evenings, weekends, and when your team is busy.
-
+                    Keep answering calls during busy hours, evenings,
+                    weekends, and whenever your team can't pick up.
                 </p>
 
-            </div>
+            </article>
 
 
-            <div class="card">
+            <article class="card">
 
                 <div class="card-number">
                     02
@@ -721,16 +503,14 @@
                 </h3>
 
                 <p>
-
-                    The AI understands what callers need, asks relevant
-                    questions, and gathers the information your team needs.
-
+                    Collect caller details and ask relevant questions based
+                    on how your business handles new inquiries.
                 </p>
 
-            </div>
+            </article>
 
 
-            <div class="card">
+            <article class="card">
 
                 <div class="card-number">
                     03
@@ -741,17 +521,13 @@
                 </h3>
 
                 <p>
-
-                    Qualified callers can be scheduled directly into your
-                    calendar without manual back-and-forth.
-
+                    Connect qualified callers with available appointment
+                    times based on your scheduling workflow.
                 </p>
 
-            </div>
-
+            </article>
 
         </div>
-
 
     </div>
 
@@ -769,114 +545,97 @@
 
     <div class="container">
 
-
         <div class="section-label">
             HOW IT WORKS
         </div>
 
 
         <h2>
-
-            Your AI receptionist.<br>
-
-            Working 24/7.
-
+            From first ring<br>
+            to booked appointment.
         </h2>
 
 
         <p class="section-intro">
-
-            From the first ring to the booked appointment, IronSales handles
-            the conversation automatically.
-
+            A straightforward system designed to help your business capture
+            more opportunities without constantly watching the phone.
         </p>
 
 
         <div class="feature-grid">
 
-
-            <div class="feature">
+            <article class="feature">
 
                 <div class="feature-number">
                     01
                 </div>
 
                 <h3>
-                    Instant Call Answering
+                    Call Comes In
                 </h3>
 
                 <p>
-
-                    Every call gets answered. Your AI receptionist picks up
-                    instantly and provides a professional, natural experience.
-
+                    A customer calls your business while you're working,
+                    driving, with another client, or unavailable.
                 </p>
 
-            </div>
+            </article>
 
 
-            <div class="feature">
+            <article class="feature">
 
                 <div class="feature-number">
                     02
                 </div>
 
                 <h3>
-                    Lead Qualification
+                    AI Answers
                 </h3>
 
                 <p>
-
-                    The AI asks the right questions, identifies what the caller
-                    needs, and gathers important information.
-
+                    Your configured AI receptionist answers the call and
+                    starts a natural conversation with the customer.
                 </p>
 
-            </div>
+            </article>
 
 
-            <div class="feature">
+            <article class="feature">
 
                 <div class="feature-number">
                     03
                 </div>
 
                 <h3>
-                    Calendar Booking
+                    Lead Gets Qualified
                 </h3>
 
                 <p>
-
-                    Qualified callers can be scheduled directly into your
-                    calendar based on your availability.
-
+                    The system collects relevant information about what the
+                    customer needs and where the opportunity should go next.
                 </p>
 
-            </div>
+            </article>
 
 
-            <div class="feature">
+            <article class="feature">
 
                 <div class="feature-number">
                     04
                 </div>
 
                 <h3>
-                    Always Available
+                    Appointment Gets Booked
                 </h3>
 
                 <p>
-
-                    Keep capturing opportunities even when you're on a job,
-                    after hours, or unable to answer the phone.
-
+                    When appropriate, the caller can be moved into your
+                    scheduling workflow based on your availability.
                 </p>
 
-            </div>
-
+            </article>
 
         </div>
-
 
     </div>
 
@@ -894,289 +653,71 @@
 
     <div class="container">
 
-
         <div class="section-label">
             BUILT FOR LOCAL SERVICE BUSINESSES
         </div>
 
 
         <h2>
-
-            One AI receptionist.<br>
-
-            Built for your business.
-
+            One system.<br>
+            Built around your calls.
         </h2>
 
 
         <p class="section-intro">
-
-            IronSales works across the industries where missed calls can mean
-            missed revenue.
-
+            IronSales is designed for service businesses where a missed call
+            can quickly become a missed customer.
         </p>
 
 
         <div class="industry-grid">
 
-
-            <div class="industry-card">
-
+            <article class="industry-card">
                 <span>01</span>
-
                 <h3>HVAC</h3>
-
-                <p>
-                    Capture service requests and schedule appointments.
-                </p>
-
-            </div>
+                <p>Capture service requests and scheduling opportunities.</p>
+            </article>
 
 
-            <div class="industry-card">
-
+            <article class="industry-card">
                 <span>02</span>
-
-                <h3>
-                    Plumbing
-                </h3>
-
-                <p>
-                    Answer calls and identify urgent service needs.
-                </p>
-
-            </div>
+                <h3>Plumbing</h3>
+                <p>Handle new inquiries and identify urgent service needs.</p>
+            </article>
 
 
-            <div class="industry-card">
-
+            <article class="industry-card">
                 <span>03</span>
-
-                <h3>
-                    Electrical
-                </h3>
-
-                <p>
-                    Qualify callers and keep your schedule moving.
-                </p>
-
-            </div>
+                <h3>Electrical</h3>
+                <p>Collect caller details and keep new opportunities moving.</p>
+            </article>
 
 
-            <div class="industry-card">
-
+            <article class="industry-card">
                 <span>04</span>
-
-                <h3>
-                    Roofing
-                </h3>
-
-                <p>
-                    Capture estimates and inspection opportunities.
-                </p>
-
-            </div>
+                <h3>Roofing</h3>
+                <p>Capture estimate and inspection inquiries.</p>
+            </article>
 
 
-            <div class="industry-card">
-
+            <article class="industry-card">
                 <span>05</span>
-
-                <h3>
-                    General Contractors
-                </h3>
-
-                <p>
-                    Turn incoming inquiries into qualified opportunities.
-                </p>
-
-            </div>
+                <h3>General Contractors</h3>
+                <p>Turn incoming inquiries into organized opportunities.</p>
+            </article>
 
 
-            <div class="industry-card">
-
+            <article class="industry-card">
                 <span>06</span>
-
-                <h3>
-                    Home Services
-                </h3>
-
-                <p>
-                    Build a better customer experience around the clock.
-                </p>
-
-            </div>
-
+                <h3>Home Services</h3>
+                <p>Provide a better call experience around the clock.</p>
+            </article>
 
         </div>
-
 
     </div>
 
 </section>
-
-
-<!-- =========================================
-     IMPROVED AI DEMO
-========================================= -->
-
-<div class="chat-widget">
-
-
-    <button
-        type="button"
-        class="chat-launcher"
-        id="chatButton"
-        aria-label="Open IronSales AI receptionist demo"
-    >
-
-
-        <div class="chat-launcher-icon">
-            AI
-        </div>
-
-
-        <div class="chat-launcher-copy">
-
-            <strong>
-                See IronSales in action
-            </strong>
-
-            <span>
-                Try the AI receptionist
-            </span>
-
-        </div>
-
-
-    </button>
-
-
-    <div
-        class="chat-box"
-        id="chatBox"
-        aria-hidden="true"
-    >
-
-
-        <div class="chat-header">
-
-
-            <div class="chat-header-left">
-
-
-                <div class="chat-header-icon">
-                    AI
-                </div>
-
-
-                <div>
-
-                    <strong>
-                        IronSales AI
-                    </strong>
-
-                    <small>
-                        Receptionist demo
-                    </small>
-
-                </div>
-
-
-            </div>
-
-
-            <button
-                type="button"
-                class="chat-close"
-                id="closeChat"
-                aria-label="Close AI demo"
-            >
-                ×
-            </button>
-
-
-        </div>
-
-
-        <div
-            class="chat-messages"
-            id="chatMessages"
-            aria-live="polite"
-        >
-
-
-            <div class="message ai">
-
-                Hi! I'm the IronSales AI receptionist demo.
-                Choose a question below to see how I can help your business.
-
-            </div>
-
-
-        </div>
-
-
-        <!-- THESE OPTIONS STAY VISIBLE -->
-
-        <div
-            class="chat-question-list"
-            id="chatQuestionList"
-        >
-
-
-            <button
-                type="button"
-                class="chat-question"
-                data-question="How fast does it answer calls?"
-            >
-                How fast does it answer?
-            </button>
-
-
-            <button
-                type="button"
-                class="chat-question"
-                data-question="Can it qualify leads?"
-            >
-                Can it qualify leads?
-            </button>
-
-
-            <button
-                type="button"
-                class="chat-question"
-                data-question="Can it book appointments?"
-            >
-                Can it book appointments?
-            </button>
-
-
-            <button
-                type="button"
-                class="chat-question"
-                data-question="What happens after hours?"
-            >
-                What happens after hours?
-            </button>
-
-
-        </div>
-
-
-        <button
-            type="button"
-            class="chat-demo-cta"
-            onclick="scrollToContact()"
-        >
-            Request a Free Demo →
-        </button>
-
-
-    </div>
-
-
-</div>
 
 
 <!-- =========================================
@@ -1190,9 +731,7 @@
 
     <div class="container contact-container">
 
-
         <div class="contact-copy">
-
 
             <div class="section-label">
                 GET STARTED
@@ -1200,107 +739,61 @@
 
 
             <h2>
-
                 Stop losing business<br>
-
                 to missed calls.
-
             </h2>
 
 
             <p>
-
-                Your next customer could be calling right now.
-                See how IronSales can answer your calls, qualify your leads,
-                and book appointments automatically.
-
+                Tell us about your business and we'll show you how an
+                IronSales receptionist could fit into your call workflow.
             </p>
 
 
             <div class="contact-details">
 
-
                 <div class="contact-detail">
-
 
                     <strong>
                         Email
                     </strong>
 
-
                     <a href="mailto:ironsales.ai@gmail.com">
-
                         ironsales.ai@gmail.com
-
                     </a>
-
 
                 </div>
 
 
-                <div class="text-demo-card">
-
-
-                    <div class="text-demo-label">
-
-                        TRY THE TEXT DEMO
-
-                    </div>
-
+                <div class="contact-detail">
 
                     <strong>
-
-                        Want to try IronSales right now?
-
+                        Want to try it?
                     </strong>
 
-
-                    <p>
-
+                    <span class="text-demo-line">
                         Text
-
-                        <b>"DEMO"</b>
-
+                        <b>“DEMO”</b>
                         to
-
-                        <a
-                            href="sms:+19544175240?body=DEMO"
-                        >
-
+                        <a href="sms:+19544175240?body=DEMO">
                             (954) 417-5240
-
                         </a>
-
                         to try it out.
-
-                    </p>
-
-
-                    <a
-                        href="sms:+19544175240?body=DEMO"
-                        class="text-demo-button"
-                    >
-
-                        Text "DEMO" Now →
-
-                    </a>
-
+                    </span>
 
                 </div>
 
-
             </div>
-
 
         </div>
 
 
         <div class="form-wrapper">
 
-
-            <!-- =========================================
-                 REAL FORMSPREE FORM
-            ========================================= -->
+            <!--
+                SIMPLE DIRECT FORMSPREE FORM.
+                NO JAVASCRIPT INTERCEPTS THIS SUBMISSION.
+            -->
 
             <form
                 id="leadForm"
@@ -1308,50 +801,26 @@
                 method="POST"
             >
 
-
-                <input
-                    type="hidden"
-                    name="_subject"
-                    value="New IronSales Demo Request"
-                >
-
-
-                <input
-                    type="hidden"
-                    name="source"
-                    value="IronSales Website"
-                >
-
-
                 <div class="form-header">
-
 
                     <h3>
                         Request Your Free Demo
                     </h3>
 
-
                     <p>
-
-                        Tell us about your business and we'll show you how
-                        IronSales can handle your calls.
-
+                        Fill this out and we'll follow up about your business.
                     </p>
-
 
                 </div>
 
 
                 <div class="form-row">
 
-
                     <div class="form-group">
-
 
                         <label for="name">
                             Name
                         </label>
-
 
                         <input
                             type="text"
@@ -1359,21 +828,17 @@
                             name="name"
                             placeholder="Your name"
                             autocomplete="name"
-                            maxlength="100"
                             required
                         >
-
 
                     </div>
 
 
                     <div class="form-group">
 
-
                         <label for="business">
                             Business Name
                         </label>
-
 
                         <input
                             type="text"
@@ -1381,27 +846,21 @@
                             name="business"
                             placeholder="Your company"
                             autocomplete="organization"
-                            maxlength="150"
                             required
                         >
 
-
                     </div>
-
 
                 </div>
 
 
                 <div class="form-row">
 
-
                     <div class="form-group">
-
 
                         <label for="email">
                             Email
                         </label>
-
 
                         <input
                             type="email"
@@ -1409,21 +868,17 @@
                             name="email"
                             placeholder="you@company.com"
                             autocomplete="email"
-                            maxlength="254"
                             required
                         >
-
 
                     </div>
 
 
                     <div class="form-group">
 
-
                         <label for="phone">
                             Phone Number
                         </label>
-
 
                         <input
                             type="tel"
@@ -1431,31 +886,25 @@
                             name="phone"
                             placeholder="(555) 555-5555"
                             autocomplete="tel"
-                            maxlength="30"
                             required
                         >
 
-
                     </div>
-
 
                 </div>
 
 
                 <div class="form-group">
 
-
                     <label for="businessType">
                         Business Type
                     </label>
-
 
                     <select
                         id="businessType"
                         name="businessType"
                         required
                     >
-
 
                         <option
                             value=""
@@ -1465,89 +914,71 @@
                             Select your industry
                         </option>
 
-
                         <option value="HVAC">
                             HVAC
                         </option>
-
 
                         <option value="Plumbing">
                             Plumbing
                         </option>
 
-
                         <option value="Electrical">
                             Electrical
                         </option>
-
 
                         <option value="Roofing">
                             Roofing
                         </option>
 
-
                         <option value="General Contractor">
                             General Contractor
                         </option>
-
 
                         <option value="Home Services">
                             Home Services
                         </option>
 
-
                         <option value="Other">
                             Other
                         </option>
 
-
                     </select>
-
 
                 </div>
 
 
                 <div class="form-group">
 
-
                     <label for="message">
                         Tell us about your business
                     </label>
-
 
                     <textarea
                         id="message"
                         name="message"
                         rows="4"
-                        maxlength="2000"
                         placeholder="How many calls do you receive? What would you like to automate?"
                     ></textarea>
-
 
                 </div>
 
 
                 <label class="consent">
 
-
                     <input
                         type="checkbox"
                         id="smsConsent"
                         name="smsConsent"
-                        value="Yes - customer consented to contact regarding their inquiry"
+                        value="Yes"
                         required
                     >
 
-
                     <span>
-
                         I agree to be contacted regarding my inquiry.
                         I understand that I may receive SMS messages related
                         to my request. Message and data rates may apply.
                         Reply STOP to unsubscribe.
-
                     </span>
-
 
                 </label>
 
@@ -1555,32 +986,19 @@
                 <button
                     type="submit"
                     class="form-button"
-                    id="submitButton"
                 >
-
                     Request My Free Demo →
-
                 </button>
-
-
-                <div
-                    id="formMessage"
-                    class="form-message"
-                    role="status"
-                    aria-live="polite"
-                ></div>
-
 
             </form>
 
-
         </div>
-
 
     </div>
 
-
 </section>
+
+</main>
 
 
 <!-- =========================================
@@ -1589,68 +1007,60 @@
 
 <footer>
 
-
     <div class="container">
 
+        <div class="footer-brand">
 
-        <div class="footer-logo">
-            Iron<span>Sales</span>
+            <img
+                src="/logo.png"
+                alt=""
+                class="footer-brand-logo"
+            >
+
+            <strong>
+                IronSales
+            </strong>
+
         </div>
 
 
         <p class="footer-description">
-
             AI-powered phone reception for local service businesses.
-
         </p>
 
 
         <div class="footer-links">
 
-
-            <a href="privacy.html">
+            <a href="/privacy.html">
                 Privacy Policy
             </a>
 
+            <span>•</span>
 
-            <span>
-                |
-            </span>
-
-
-            <a href="terms.html">
+            <a href="/terms.html">
                 Terms & Conditions
             </a>
-
 
         </div>
 
 
         <p class="small">
-
-            By submitting contact information, customers agree to receive
-            communications regarding their inquiry from IronSales.
+            By submitting contact information, you agree to receive
+            communications regarding your inquiry from IronSales.
             Message and data rates may apply. Reply STOP to unsubscribe.
-            Reply HELP for assistance.
-
         </p>
 
 
         <p class="copyright">
-
             © 2026 IronSales. All rights reserved.
-
         </p>
 
-
     </div>
-
 
 </footer>
 
 
-<script src="script.js?v=20"></script>
-
+<script src="script.js?v=30"></script>
 
 </body>
 
