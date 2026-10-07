@@ -2,6 +2,8 @@
    IRONSALES JAVASCRIPT
 ========================================= */
 
+"use strict";
+
 
 /* =========================================
    NAVIGATION
@@ -14,7 +16,13 @@ if (menuToggle && navLinks) {
 
     menuToggle.addEventListener("click", function () {
 
-        navLinks.classList.toggle("active");
+        const isActive =
+            navLinks.classList.toggle("active");
+
+        menuToggle.setAttribute(
+            "aria-expanded",
+            String(isActive)
+        );
 
     });
 
@@ -27,6 +35,13 @@ document.querySelectorAll(".nav-links a").forEach(function (link) {
 
         if (navLinks) {
             navLinks.classList.remove("active");
+        }
+
+        if (menuToggle) {
+            menuToggle.setAttribute(
+                "aria-expanded",
+                "false"
+            );
         }
 
     });
@@ -112,7 +127,7 @@ if (closeChat && chatBox && chatButton) {
 
 
 /* =========================================
-   AI RESPONSES
+   AI CHAT RESPONSES
 ========================================= */
 
 const responses = {
@@ -129,108 +144,157 @@ const responses = {
 };
 
 
-document.querySelectorAll(
-    ".chat-options button"
-).forEach(function (button) {
+/* =========================================
+   AI CHAT OPTION HANDLER
+========================================= */
 
-    button.addEventListener("click", function () {
+function handleChatQuestion(button) {
 
-        if (!chatMessages) return;
+    if (!chatMessages) return;
+
+    const question =
+        button.dataset.question;
+
+    if (!question) return;
 
 
-        const question =
-            button.dataset.question;
+    /* USER MESSAGE */
+
+    const userMessage =
+        document.createElement("div");
+
+    userMessage.className =
+        "message user";
+
+    userMessage.textContent =
+        question;
+
+    chatMessages.appendChild(
+        userMessage
+    );
 
 
-        const userMessage =
+    /* REMOVE ORIGINAL OPTIONS */
+
+    const options =
+        button.closest(".chat-options");
+
+    if (options) {
+        options.remove();
+    }
+
+
+    chatMessages.scrollTop =
+        chatMessages.scrollHeight;
+
+
+    /* AI RESPONSE */
+
+    setTimeout(function () {
+
+        const aiMessage =
             document.createElement("div");
 
-        userMessage.className =
-            "message user";
+        aiMessage.className =
+            "message ai";
 
-        userMessage.textContent =
-            question;
+        aiMessage.textContent =
+            responses[question] ||
+            "I can show you how IronSales works for your business.";
 
         chatMessages.appendChild(
-            userMessage
+            aiMessage
         );
 
 
-        const options =
-            document.querySelector(".chat-options");
+        chatMessages.scrollTop =
+            chatMessages.scrollHeight;
 
-        if (options) {
-            options.remove();
-        }
 
+        /* FOLLOW-UP CTA */
 
         setTimeout(function () {
 
-            const aiMessage =
+            const followUp =
                 document.createElement("div");
 
-            aiMessage.className =
-                "message ai";
+            followUp.className =
+                "chat-options";
 
-            aiMessage.textContent =
-                responses[question] ||
-                "I can show you how IronSales works for your business.";
+
+            const followUpButton =
+                document.createElement("button");
+
+            followUpButton.type =
+                "button";
+
+            followUpButton.textContent =
+                "I want to see it for my business →";
+
+
+            followUpButton.addEventListener(
+                "click",
+                function () {
+
+                    scrollToContact();
+
+                    if (chatBox && chatButton) {
+
+                        chatBox.classList.remove(
+                            "open"
+                        );
+
+                        chatButton.style.display =
+                            "flex";
+
+                    }
+
+                }
+            );
+
+
+            followUp.appendChild(
+                followUpButton
+            );
+
 
             chatMessages.appendChild(
-                aiMessage
+                followUp
             );
 
 
             chatMessages.scrollTop =
                 chatMessages.scrollHeight;
 
+        }, 400);
 
-            setTimeout(function () {
+    }, 500);
 
-                const followUp =
-                    document.createElement("div");
-
-                followUp.className =
-                    "chat-options";
+}
 
 
-                const followUpButton =
-                    document.createElement("button");
+/* =========================================
+   INITIAL CHAT BUTTONS
+========================================= */
 
-                followUpButton.textContent =
-                    "I want to see it for my business →";
+document.querySelectorAll(
+    ".chat-options button[data-question]"
+).forEach(function (button) {
 
+    button.addEventListener(
+        "click",
+        function () {
 
-                followUpButton.addEventListener(
-                    "click",
-                    scrollToContact
-                );
+            handleChatQuestion(button);
 
-
-                followUp.appendChild(
-                    followUpButton
-                );
-
-
-                chatMessages.appendChild(
-                    followUp
-                );
-
-
-                chatMessages.scrollTop =
-                    chatMessages.scrollHeight;
-
-            }, 500);
-
-        }, 600);
-
-    });
+        }
+    );
 
 });
 
 
 /* =========================================
-   LEAD FORM
+   FORMSPREE LEAD FORM
 ========================================= */
 
 const leadForm =
@@ -242,69 +306,273 @@ const formMessage =
 
 if (leadForm) {
 
+    const submitButton =
+        leadForm.querySelector(
+            'button[type="submit"]'
+        );
+
+
+    const originalButtonText =
+        submitButton
+            ? submitButton.textContent.trim()
+            : "Request My Free Demo →";
+
+
+    let formSubmitting = false;
+
+
     leadForm.addEventListener(
         "submit",
-        function (event) {
+        async function (event) {
 
             event.preventDefault();
 
 
-            const name =
-                document.getElementById("name")?.value || "";
+            /* =========================================
+               VALIDATE FORM
+            ========================================= */
 
-            const business =
-                document.getElementById("business")?.value || "";
+            if (!leadForm.checkValidity()) {
 
-            const email =
-                document.getElementById("email")?.value || "";
+                leadForm.reportValidity();
 
-            const phone =
-                document.getElementById("phone")?.value || "";
+                return;
 
-            const businessType =
-                document.getElementById("businessType")?.value || "";
-
-            const message =
-                document.getElementById("message")?.value || "";
+            }
 
 
-            const emailBody = `
-New IronSales Demo Request
+            /* =========================================
+               PREVENT DUPLICATE SUBMISSIONS
+            ========================================= */
 
-Name: ${name}
-Business: ${business}
-Email: ${email}
-Phone: ${phone}
-Business Type: ${businessType}
-
-Message:
-${message}
-            `;
+            if (formSubmitting) {
+                return;
+            }
 
 
-            const mailtoUrl =
-                "mailto:ironsales.ai@gmail.com" +
-                "?subject=" +
-                encodeURIComponent(
-                    "New IronSales Demo Request - " +
-                    business
-                ) +
-                "&body=" +
-                encodeURIComponent(
-                    emailBody
-                );
+            formSubmitting = true;
+
+
+            /* =========================================
+               LOADING STATE
+            ========================================= */
+
+            if (submitButton) {
+
+                submitButton.disabled =
+                    true;
+
+                submitButton.textContent =
+                    "Sending...";
+
+            }
 
 
             if (formMessage) {
 
                 formMessage.textContent =
-                    "Opening your email app...";
+                    "Sending your request...";
+
+                formMessage.classList.remove(
+                    "success",
+                    "error"
+                );
 
             }
 
 
-            window.location.href =
-                mailtoUrl;
+            /* =========================================
+               COLLECT FORM DATA
+            ========================================= */
+
+            const formData =
+                new FormData(leadForm);
+
+
+            /* =========================================
+               ADD WEBSITE SOURCE
+            ========================================= */
+
+            if (!formData.has("source")) {
+
+                formData.append(
+                    "source",
+                    "IronSales Website"
+                );
+
+            }
+
+
+            try {
+
+                /* =========================================
+                   SEND TO FORMSPREE
+                ========================================= */
+
+                const response =
+                    await fetch(
+                        "https://formspree.io/f/mkjogneb",
+                        {
+                            method: "POST",
+
+                            body: formData,
+
+                            headers: {
+                                "Accept":
+                                    "application/json"
+                            }
+                        }
+                    );
+
+
+                /* =========================================
+                   SUCCESS
+                ========================================= */
+
+                if (response.ok) {
+
+                    if (formMessage) {
+
+                        formMessage.textContent =
+                            "Thank you! Your demo request has been received. We'll be in touch soon.";
+
+                        formMessage.classList.remove(
+                            "error"
+                        );
+
+                        formMessage.classList.add(
+                            "success"
+                        );
+
+                    }
+
+
+                    leadForm.reset();
+
+
+                    if (submitButton) {
+
+                        submitButton.textContent =
+                            "Request Received ✓";
+
+                    }
+
+
+                    setTimeout(function () {
+
+                        formSubmitting =
+                            false;
+
+
+                        if (submitButton) {
+
+                            submitButton.disabled =
+                                false;
+
+                            submitButton.textContent =
+                                originalButtonText;
+
+                        }
+
+                    }, 4000);
+
+
+                    return;
+
+                }
+
+
+                /* =========================================
+                   FORMSPREE ERROR RESPONSE
+                ========================================= */
+
+                let errorMessage =
+                    "We couldn't send your request. Please try again.";
+
+
+                try {
+
+                    const responseData =
+                        await response.json();
+
+
+                    if (
+                        responseData &&
+                        Array.isArray(
+                            responseData.errors
+                        ) &&
+                        responseData.errors.length
+                    ) {
+
+                        errorMessage =
+                            responseData.errors
+                                .map(function (error) {
+
+                                    return (
+                                        error.message ||
+                                        "Submission error"
+                                    );
+
+                                })
+                                .join(" ");
+
+                    }
+
+                } catch (jsonError) {
+
+                    /* Keep default error message */
+
+                }
+
+
+                throw new Error(
+                    errorMessage
+                );
+
+            } catch (error) {
+
+                /* =========================================
+                   NETWORK / SERVER ERROR
+                ========================================= */
+
+                console.error(
+                    "IronSales form submission error:",
+                    error
+                );
+
+
+                formSubmitting =
+                    false;
+
+
+                if (formMessage) {
+
+                    formMessage.textContent =
+                        error.message ||
+                        "We couldn't send your request. Please try again or email ironsales.ai@gmail.com.";
+
+                    formMessage.classList.remove(
+                        "success"
+                    );
+
+                    formMessage.classList.add(
+                        "error"
+                    );
+
+                }
+
+
+                if (submitButton) {
+
+                    submitButton.disabled =
+                        false;
+
+                    submitButton.textContent =
+                        originalButtonText;
+
+                }
+
+            }
 
         }
     );
