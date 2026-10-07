@@ -1,7 +1,3 @@
-/* =========================================
-   IRONSALES JAVASCRIPT
-========================================= */
-
 "use strict";
 
 
@@ -9,44 +5,62 @@
    NAVIGATION
 ========================================= */
 
-const menuToggle = document.getElementById("menuToggle");
-const navLinks = document.getElementById("navLinks");
+const menuToggle =
+    document.getElementById("menuToggle");
+
+const navLinks =
+    document.getElementById("navLinks");
+
 
 if (menuToggle && navLinks) {
 
-    menuToggle.addEventListener("click", function () {
+    menuToggle.addEventListener(
+        "click",
+        function () {
 
-        const isActive =
-            navLinks.classList.toggle("active");
+            const opened =
+                navLinks.classList.toggle("active");
 
-        menuToggle.setAttribute(
-            "aria-expanded",
-            String(isActive)
-        );
+            menuToggle.setAttribute(
+                "aria-expanded",
+                opened ? "true" : "false"
+            );
 
-    });
+        }
+    );
 
 }
 
 
-document.querySelectorAll(".nav-links a").forEach(function (link) {
+document
+    .querySelectorAll(".nav-links a")
+    .forEach(function (link) {
 
-    link.addEventListener("click", function () {
+        link.addEventListener(
+            "click",
+            function () {
 
-        if (navLinks) {
-            navLinks.classList.remove("active");
-        }
+                if (navLinks) {
 
-        if (menuToggle) {
-            menuToggle.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-        }
+                    navLinks.classList.remove(
+                        "active"
+                    );
+
+                }
+
+                if (menuToggle) {
+
+                    menuToggle.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+                }
+
+            }
+        );
 
     });
-
-});
 
 
 /* =========================================
@@ -58,7 +72,9 @@ function scrollToContact() {
     const contact =
         document.getElementById("contact");
 
-    if (!contact) return;
+    if (!contact) {
+        return;
+    }
 
     contact.scrollIntoView({
         behavior: "smooth",
@@ -73,7 +89,9 @@ function scrollToHow() {
     const features =
         document.getElementById("features");
 
-    if (!features) return;
+    if (!features) {
+        return;
+    }
 
     features.scrollIntoView({
         behavior: "smooth",
@@ -102,199 +120,217 @@ const chatMessages =
 
 if (chatButton && chatBox) {
 
-    chatButton.addEventListener("click", function () {
+    chatButton.addEventListener(
+        "click",
+        function () {
 
-        chatBox.classList.add("open");
+            chatBox.classList.add("open");
 
-        chatButton.style.display = "none";
+            chatButton.style.display =
+                "none";
 
-    });
+        }
+    );
 
 }
 
 
-if (closeChat && chatBox && chatButton) {
+if (
+    closeChat &&
+    chatBox &&
+    chatButton
+) {
 
-    closeChat.addEventListener("click", function () {
+    closeChat.addEventListener(
+        "click",
+        function () {
 
-        chatBox.classList.remove("open");
+            chatBox.classList.remove(
+                "open"
+            );
 
-        chatButton.style.display = "flex";
+            chatButton.style.display =
+                "flex";
 
-    });
+        }
+    );
 
 }
 
 
 /* =========================================
-   AI CHAT RESPONSES
+   AI RESPONSES
 ========================================= */
 
 const responses = {
 
     "How fast does it answer calls?":
-        "IronSales is designed to answer incoming calls immediately, so your customers aren't left waiting or sent to voicemail.",
+        "IronSales is designed to answer incoming calls immediately, so customers aren't left waiting or sent to voicemail.",
 
     "Can it qualify leads?":
-        "Yes. The AI can ask questions based on your business, understand what the caller needs, and collect the information your team needs.",
+        "Yes. IronSales can ask questions based on your business, understand what the caller needs, and collect the information your team needs.",
 
     "Can it book appointments?":
-        "Yes. Once a caller is qualified, IronSales can connect with your scheduling workflow and book an appointment based on your availability."
+        "Yes. IronSales can connect with your scheduling workflow and book qualified callers based on your availability."
 
 };
 
 
 /* =========================================
-   AI CHAT OPTION HANDLER
+   AI QUESTION BUTTONS
 ========================================= */
 
-function handleChatQuestion(button) {
+document
+    .querySelectorAll(
+        ".chat-options button[data-question]"
+    )
+    .forEach(function (button) {
 
-    if (!chatMessages) return;
+        button.addEventListener(
+            "click",
+            function () {
 
-    const question =
-        button.dataset.question;
-
-    if (!question) return;
-
-
-    /* USER MESSAGE */
-
-    const userMessage =
-        document.createElement("div");
-
-    userMessage.className =
-        "message user";
-
-    userMessage.textContent =
-        question;
-
-    chatMessages.appendChild(
-        userMessage
-    );
+                if (!chatMessages) {
+                    return;
+                }
 
 
-    /* REMOVE ORIGINAL OPTIONS */
-
-    const options =
-        button.closest(".chat-options");
-
-    if (options) {
-        options.remove();
-    }
+                const question =
+                    button.dataset.question;
 
 
-    chatMessages.scrollTop =
-        chatMessages.scrollHeight;
+                if (!question) {
+                    return;
+                }
 
 
-    /* AI RESPONSE */
-
-    setTimeout(function () {
-
-        const aiMessage =
-            document.createElement("div");
-
-        aiMessage.className =
-            "message ai";
-
-        aiMessage.textContent =
-            responses[question] ||
-            "I can show you how IronSales works for your business.";
-
-        chatMessages.appendChild(
-            aiMessage
-        );
+                const userMessage =
+                    document.createElement("div");
 
 
-        chatMessages.scrollTop =
-            chatMessages.scrollHeight;
+                userMessage.className =
+                    "message user";
 
 
-        /* FOLLOW-UP CTA */
-
-        setTimeout(function () {
-
-            const followUp =
-                document.createElement("div");
-
-            followUp.className =
-                "chat-options";
+                userMessage.textContent =
+                    question;
 
 
-            const followUpButton =
-                document.createElement("button");
-
-            followUpButton.type =
-                "button";
-
-            followUpButton.textContent =
-                "I want to see it for my business →";
+                chatMessages.appendChild(
+                    userMessage
+                );
 
 
-            followUpButton.addEventListener(
-                "click",
-                function () {
+                const options =
+                    button.closest(".chat-options");
 
-                    scrollToContact();
 
-                    if (chatBox && chatButton) {
+                if (options) {
+                    options.remove();
+                }
 
-                        chatBox.classList.remove(
-                            "open"
+
+                chatMessages.scrollTop =
+                    chatMessages.scrollHeight;
+
+
+                setTimeout(function () {
+
+                    const aiMessage =
+                        document.createElement("div");
+
+
+                    aiMessage.className =
+                        "message ai";
+
+
+                    aiMessage.textContent =
+                        responses[question] ||
+                        "I can show you how IronSales works for your business.";
+
+
+                    chatMessages.appendChild(
+                        aiMessage
+                    );
+
+
+                    chatMessages.scrollTop =
+                        chatMessages.scrollHeight;
+
+
+                    setTimeout(function () {
+
+                        const followUp =
+                            document.createElement("div");
+
+
+                        followUp.className =
+                            "chat-options";
+
+
+                        const demoButton =
+                            document.createElement("button");
+
+
+                        demoButton.type =
+                            "button";
+
+
+                        demoButton.textContent =
+                            "I want to see it for my business →";
+
+
+                        demoButton.addEventListener(
+                            "click",
+                            function () {
+
+                                scrollToContact();
+
+
+                                if (
+                                    chatBox &&
+                                    chatButton
+                                ) {
+
+                                    chatBox.classList.remove(
+                                        "open"
+                                    );
+
+
+                                    chatButton.style.display =
+                                        "flex";
+
+                                }
+
+                            }
                         );
 
-                        chatButton.style.display =
-                            "flex";
 
-                    }
-
-                }
-            );
+                        followUp.appendChild(
+                            demoButton
+                        );
 
 
-            followUp.appendChild(
-                followUpButton
-            );
+                        chatMessages.appendChild(
+                            followUp
+                        );
 
 
-            chatMessages.appendChild(
-                followUp
-            );
+                        chatMessages.scrollTop =
+                            chatMessages.scrollHeight;
 
+                    }, 350);
 
-            chatMessages.scrollTop =
-                chatMessages.scrollHeight;
+                }, 500);
 
-        }, 400);
+            }
+        );
 
-    }, 500);
-
-}
+    });
 
 
 /* =========================================
-   INITIAL CHAT BUTTONS
-========================================= */
-
-document.querySelectorAll(
-    ".chat-options button[data-question]"
-).forEach(function (button) {
-
-    button.addEventListener(
-        "click",
-        function () {
-
-            handleChatQuestion(button);
-
-        }
-    );
-
-});
-
-
-/* =========================================
-   FORMSPREE LEAD FORM
+   FORMSPREE FORM
 ========================================= */
 
 const leadForm =
@@ -303,23 +339,14 @@ const leadForm =
 const formMessage =
     document.getElementById("formMessage");
 
+const submitButton =
+    document.getElementById("submitButton");
+
+
+let submitting = false;
+
 
 if (leadForm) {
-
-    const submitButton =
-        leadForm.querySelector(
-            'button[type="submit"]'
-        );
-
-
-    const originalButtonText =
-        submitButton
-            ? submitButton.textContent.trim()
-            : "Request My Free Demo →";
-
-
-    let formSubmitting = false;
-
 
     leadForm.addEventListener(
         "submit",
@@ -328,9 +355,7 @@ if (leadForm) {
             event.preventDefault();
 
 
-            /* =========================================
-               VALIDATE FORM
-            ========================================= */
+            /* HTML VALIDATION */
 
             if (!leadForm.checkValidity()) {
 
@@ -341,26 +366,21 @@ if (leadForm) {
             }
 
 
-            /* =========================================
-               PREVENT DUPLICATE SUBMISSIONS
-            ========================================= */
+            /* PREVENT DUPLICATE SEND */
 
-            if (formSubmitting) {
+            if (submitting) {
                 return;
             }
 
 
-            formSubmitting = true;
+            submitting = true;
 
-
-            /* =========================================
-               LOADING STATE
-            ========================================= */
 
             if (submitButton) {
 
                 submitButton.disabled =
                     true;
+
 
                 submitButton.textContent =
                     "Sending...";
@@ -371,43 +391,20 @@ if (leadForm) {
             if (formMessage) {
 
                 formMessage.textContent =
-                    "Sending your request...";
-
-                formMessage.classList.remove(
-                    "success",
-                    "error"
-                );
-
-            }
+                    "Sending your demo request...";
 
 
-            /* =========================================
-               COLLECT FORM DATA
-            ========================================= */
-
-            const formData =
-                new FormData(leadForm);
-
-
-            /* =========================================
-               ADD WEBSITE SOURCE
-            ========================================= */
-
-            if (!formData.has("source")) {
-
-                formData.append(
-                    "source",
-                    "IronSales Website"
-                );
+                formMessage.className =
+                    "form-message";
 
             }
 
 
             try {
 
-                /* =========================================
-                   SEND TO FORMSPREE
-                ========================================= */
+                const formData =
+                    new FormData(leadForm);
+
 
                 const response =
                     await fetch(
@@ -425,43 +422,83 @@ if (leadForm) {
                     );
 
 
-                /* =========================================
-                   SUCCESS
-                ========================================= */
+                if (!response.ok) {
 
-                if (response.ok) {
+                    let message =
+                        "We couldn't send your request. Please try again.";
 
-                    if (formMessage) {
 
-                        formMessage.textContent =
-                            "Thank you! Your demo request has been received. We'll be in touch soon.";
+                    try {
 
-                        formMessage.classList.remove(
-                            "error"
-                        );
+                        const result =
+                            await response.json();
 
-                        formMessage.classList.add(
-                            "success"
-                        );
+
+                        if (
+                            result &&
+                            Array.isArray(
+                                result.errors
+                            ) &&
+                            result.errors.length
+                        ) {
+
+                            message =
+                                result.errors
+                                    .map(
+                                        function (error) {
+
+                                            return error.message;
+
+                                        }
+                                    )
+                                    .join(" ");
+
+                        }
+
+                    } catch (error) {
+
+                        /* Keep default error */
 
                     }
 
 
-                    leadForm.reset();
+                    throw new Error(
+                        message
+                    );
+
+                }
 
 
-                    if (submitButton) {
+                /* SUCCESS */
 
-                        submitButton.textContent =
-                            "Request Received ✓";
-
-                    }
+                leadForm.reset();
 
 
-                    setTimeout(function () {
+                if (formMessage) {
 
-                        formSubmitting =
-                            false;
+                    formMessage.textContent =
+                        "Thank you! Your demo request was sent successfully. We'll be in touch soon.";
+
+
+                    formMessage.classList.add(
+                        "success"
+                    );
+
+                }
+
+
+                if (submitButton) {
+
+                    submitButton.textContent =
+                        "Request Received ✓";
+
+                }
+
+
+                setTimeout(
+                    function () {
+
+                        submitting = false;
 
 
                         if (submitButton) {
@@ -469,91 +506,33 @@ if (leadForm) {
                             submitButton.disabled =
                                 false;
 
+
                             submitButton.textContent =
-                                originalButtonText;
+                                "Request My Free Demo →";
 
                         }
 
-                    }, 4000);
-
-
-                    return;
-
-                }
-
-
-                /* =========================================
-                   FORMSPREE ERROR RESPONSE
-                ========================================= */
-
-                let errorMessage =
-                    "We couldn't send your request. Please try again.";
-
-
-                try {
-
-                    const responseData =
-                        await response.json();
-
-
-                    if (
-                        responseData &&
-                        Array.isArray(
-                            responseData.errors
-                        ) &&
-                        responseData.errors.length
-                    ) {
-
-                        errorMessage =
-                            responseData.errors
-                                .map(function (error) {
-
-                                    return (
-                                        error.message ||
-                                        "Submission error"
-                                    );
-
-                                })
-                                .join(" ");
-
-                    }
-
-                } catch (jsonError) {
-
-                    /* Keep default error message */
-
-                }
-
-
-                throw new Error(
-                    errorMessage
+                    },
+                    4000
                 );
+
 
             } catch (error) {
 
-                /* =========================================
-                   NETWORK / SERVER ERROR
-                ========================================= */
+                submitting = false;
+
 
                 console.error(
-                    "IronSales form submission error:",
+                    "IronSales Formspree error:",
                     error
                 );
-
-
-                formSubmitting =
-                    false;
 
 
                 if (formMessage) {
 
                     formMessage.textContent =
-                        error.message ||
-                        "We couldn't send your request. Please try again or email ironsales.ai@gmail.com.";
+                        "We couldn't send your request. Please try again or text DEMO to (954) 417-5240.";
 
-                    formMessage.classList.remove(
-                        "success"
-                    );
 
                     formMessage.classList.add(
                         "error"
@@ -567,8 +546,9 @@ if (leadForm) {
                     submitButton.disabled =
                         false;
 
+
                     submitButton.textContent =
-                        originalButtonText;
+                        "Request My Free Demo →";
 
                 }
 
