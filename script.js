@@ -293,3 +293,357 @@ faqQuestions.forEach(
 
     }
 );
+
+
+/* =========================================
+   FORMSPREE FORM
+   STAY ON IRONSALES AFTER SUBMISSION
+========================================= */
+
+const leadForm =
+    document.getElementById("leadForm");
+
+
+if (leadForm) {
+
+    const submitButton =
+        leadForm.querySelector(
+            'button[type="submit"]'
+        );
+
+
+    /*
+     * Create the confirmation-message area
+     * automatically.
+     *
+     * This means you DO NOT need to change
+     * index.html.
+     */
+
+    let formMessage =
+        document.getElementById(
+            "formMessage"
+        );
+
+
+    if (!formMessage) {
+
+        formMessage =
+            document.createElement("div");
+
+
+        formMessage.id =
+            "formMessage";
+
+
+        formMessage.setAttribute(
+            "role",
+            "status"
+        );
+
+
+        formMessage.setAttribute(
+            "aria-live",
+            "polite"
+        );
+
+
+        formMessage.style.marginTop =
+            "16px";
+
+
+        formMessage.style.fontSize =
+            "13px";
+
+
+        formMessage.style.lineHeight =
+            "1.6";
+
+
+        if (submitButton) {
+
+            submitButton.insertAdjacentElement(
+                "afterend",
+                formMessage
+            );
+
+        } else {
+
+            leadForm.appendChild(
+                formMessage
+            );
+
+        }
+
+    }
+
+
+    const normalButtonText =
+        submitButton
+            ? submitButton.textContent.trim()
+            : "Request My Free Demo →";
+
+
+    let isSubmitting =
+        false;
+
+
+    leadForm.addEventListener(
+        "submit",
+        async function (event) {
+
+            /*
+             * This prevents the browser from
+             * leaving IronSales and opening
+             * Formspree's page.
+             */
+
+            event.preventDefault();
+
+
+            /*
+             * Use normal browser validation.
+             */
+
+            if (!leadForm.checkValidity()) {
+
+                leadForm.reportValidity();
+
+                return;
+
+            }
+
+
+            /*
+             * Prevent somebody from clicking
+             * Submit several times.
+             */
+
+            if (isSubmitting) {
+                return;
+            }
+
+
+            isSubmitting =
+                true;
+
+
+            if (submitButton) {
+
+                submitButton.disabled =
+                    true;
+
+
+                submitButton.textContent =
+                    "Submitting...";
+
+
+                submitButton.style.opacity =
+                    "0.7";
+
+            }
+
+
+            formMessage.textContent =
+                "Submitting your request...";
+
+
+            formMessage.style.color =
+                "#94a3b8";
+
+
+            try {
+
+                /*
+                 * Collect every field from the
+                 * existing form.
+                 */
+
+                const formData =
+                    new FormData(
+                        leadForm
+                    );
+
+
+                /*
+                 * Send directly to the Formspree
+                 * endpoint already stored in the
+                 * form's action attribute.
+                 */
+
+                const response =
+                    await fetch(
+                        leadForm.action,
+                        {
+                            method: "POST",
+
+                            body: formData,
+
+                            headers: {
+                                "Accept":
+                                    "application/json"
+                            }
+                        }
+                    );
+
+
+                /*
+                 * SUCCESS
+                 */
+
+                if (response.ok) {
+
+                    leadForm.reset();
+
+
+                    formMessage.textContent =
+                        "Thank you for submitting your request! Someone from our team will contact you shortly.";
+
+
+                    formMessage.style.color =
+                        "#93c5fd";
+
+
+                    if (submitButton) {
+
+                        submitButton.textContent =
+                            "Request Submitted ✓";
+
+
+                        submitButton.style.opacity =
+                            "1";
+
+                    }
+
+
+                    /*
+                     * Re-enable the button after
+                     * a few seconds.
+                     */
+
+                    setTimeout(
+                        function () {
+
+                            isSubmitting =
+                                false;
+
+
+                            if (submitButton) {
+
+                                submitButton.disabled =
+                                    false;
+
+
+                                submitButton.textContent =
+                                    normalButtonText;
+
+                            }
+
+                        },
+                        5000
+                    );
+
+
+                    return;
+
+                }
+
+
+                /*
+                 * FORMSPREE RETURNED AN ERROR
+                 */
+
+                let errorMessage =
+                    "We couldn't submit your request. Please try again.";
+
+
+                try {
+
+                    const data =
+                        await response.json();
+
+
+                    if (
+                        data &&
+                        Array.isArray(
+                            data.errors
+                        ) &&
+                        data.errors.length
+                    ) {
+
+                        errorMessage =
+                            data.errors
+                                .map(
+                                    function (error) {
+
+                                        return error.message;
+
+                                    }
+                                )
+                                .join(" ");
+
+                    }
+
+                } catch (error) {
+
+                    /*
+                     * Keep the default message.
+                     */
+
+                }
+
+
+                throw new Error(
+                    errorMessage
+                );
+
+
+            } catch (error) {
+
+                /*
+                 * ERROR
+                 *
+                 * The visitor stays on IronSales
+                 * and their form information is
+                 * NOT cleared.
+                 */
+
+                console.error(
+                    "IronSales form submission error:",
+                    error
+                );
+
+
+                isSubmitting =
+                    false;
+
+
+                formMessage.textContent =
+                    "We couldn't submit your request. Please try again.";
+
+
+                formMessage.style.color =
+                    "#ffffff";
+
+
+                if (submitButton) {
+
+                    submitButton.disabled =
+                        false;
+
+
+                    submitButton.textContent =
+                        normalButtonText;
+
+
+                    submitButton.style.opacity =
+                        "1";
+
+                }
+
+            }
+
+        }
+    );
+
+}
